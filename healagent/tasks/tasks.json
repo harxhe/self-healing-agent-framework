@@ -1,0 +1,4402 @@
+[
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": "2026-01-15",
+      "eta_date": null,
+      "order_id": "O001",
+      "status": "delivered",
+      "tracking_number": "TRK00000001"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O001"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O001.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T001"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": null,
+      "eta_date": "2026-01-17",
+      "order_id": "O002",
+      "status": "shipped",
+      "tracking_number": "TRK00000002"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O002"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O002.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T002"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": null,
+      "eta_date": "2026-01-18",
+      "order_id": "O003",
+      "status": "processing",
+      "tracking_number": "TRK00000003"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O003"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O003.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T003"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": "2026-01-12",
+      "eta_date": null,
+      "order_id": "O004",
+      "status": "delivered",
+      "tracking_number": "TRK00000004"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O004"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O004.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T004"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": "2026-01-09",
+      "eta_date": null,
+      "order_id": "O005",
+      "status": "returned",
+      "tracking_number": "TRK00000005"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O005"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O005.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T005"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": "2026-01-06",
+      "eta_date": null,
+      "order_id": "O006",
+      "status": "delivered",
+      "tracking_number": "TRK00000006"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O006"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O006.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T006"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": null,
+      "eta_date": "2026-01-22",
+      "order_id": "O007",
+      "status": "shipped",
+      "tracking_number": "TRK00000007"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O007"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O007.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T007"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": null,
+      "eta_date": "2026-01-16",
+      "order_id": "O008",
+      "status": "processing",
+      "tracking_number": "TRK00000008"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O008"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O008.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T008"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": "2025-12-30",
+      "eta_date": null,
+      "order_id": "O009",
+      "status": "delivered",
+      "tracking_number": "TRK00000009"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O009"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O009.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T009"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": "2025-12-29",
+      "eta_date": null,
+      "order_id": "O010",
+      "status": "returned",
+      "tracking_number": "TRK00000010"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O010"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O010.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T010"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": "2025-12-28",
+      "eta_date": null,
+      "order_id": "O011",
+      "status": "delivered",
+      "tracking_number": "TRK00000011"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O011"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O011.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T011"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": null,
+      "eta_date": "2026-01-20",
+      "order_id": "O012",
+      "status": "shipped",
+      "tracking_number": "TRK00000012"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O012"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O012.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T012"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": null,
+      "eta_date": "2026-01-21",
+      "order_id": "O013",
+      "status": "processing",
+      "tracking_number": "TRK00000013"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O013"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O013.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T013"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": "2025-12-21",
+      "eta_date": null,
+      "order_id": "O014",
+      "status": "delivered",
+      "tracking_number": "TRK00000014"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O014"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O014.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T014"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": "2025-12-21",
+      "eta_date": null,
+      "order_id": "O015",
+      "status": "returned",
+      "tracking_number": "TRK00000015"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O015"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O015.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T015"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": "2025-12-19",
+      "eta_date": null,
+      "order_id": "O016",
+      "status": "delivered",
+      "tracking_number": "TRK00000016"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O016"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O016.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T016"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": null,
+      "eta_date": "2026-01-18",
+      "order_id": "O017",
+      "status": "shipped",
+      "tracking_number": "TRK00000017"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O017"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O017.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T017"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": null,
+      "eta_date": "2026-01-19",
+      "order_id": "O018",
+      "status": "processing",
+      "tracking_number": "TRK00000018"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O018"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O018.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T018"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": "2025-12-12",
+      "eta_date": null,
+      "order_id": "O019",
+      "status": "delivered",
+      "tracking_number": "TRK00000019"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O019"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O019.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T019"
+  },
+  {
+    "category": "order_status",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "partial_response",
+      "stale_context"
+    ],
+    "expected_answer": {
+      "delivered_date": "2025-12-10",
+      "eta_date": null,
+      "order_id": "O020",
+      "status": "returned",
+      "tracking_number": "TRK00000020"
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O020"
+        },
+        "tool": "order_lookup"
+      }
+    ],
+    "request": "Tell the customer the current status and tracking details for order O020.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T020"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": 40,
+      "eligible": false,
+      "order_id": "O021",
+      "reason": "outside_refund_window",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O021"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O021 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T021"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": null,
+      "eligible": false,
+      "order_id": "O022",
+      "reason": "status_shipped",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O022"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O022 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T022"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": null,
+      "eligible": false,
+      "order_id": "O023",
+      "reason": "status_processing",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O023"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O023 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T023"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": 43,
+      "eligible": false,
+      "order_id": "O024",
+      "reason": "outside_refund_window",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O024"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O024 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T024"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": 47,
+      "eligible": false,
+      "order_id": "O025",
+      "reason": "outside_refund_window",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O025"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O025 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T025"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": 49,
+      "eligible": false,
+      "order_id": "O026",
+      "reason": "outside_refund_window",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O026"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O026 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T026"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": null,
+      "eligible": false,
+      "order_id": "O027",
+      "reason": "status_shipped",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O027"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O027 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T027"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": null,
+      "eligible": false,
+      "order_id": "O028",
+      "reason": "status_processing",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O028"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O028 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T028"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": 56,
+      "eligible": false,
+      "order_id": "O029",
+      "reason": "outside_refund_window",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O029"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O029 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T029"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": -3,
+      "eligible": true,
+      "order_id": "O030",
+      "reason": "within_refund_window",
+      "refund_amount": 501.0,
+      "restocking_fee": 88.41
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O030"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "589.41 * (1 - 0.15)"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O030 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T030"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": 0,
+      "eligible": true,
+      "order_id": "O031",
+      "reason": "within_refund_window",
+      "refund_amount": 191.31,
+      "restocking_fee": 33.76
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O031"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "225.07 * (1 - 0.15)"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O031 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T031"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": null,
+      "eligible": false,
+      "order_id": "O032",
+      "reason": "status_shipped",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O032"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O032 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T032"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": null,
+      "eligible": false,
+      "order_id": "O033",
+      "reason": "status_processing",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O033"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O033 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T033"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": 7,
+      "eligible": true,
+      "order_id": "O034",
+      "reason": "within_refund_window",
+      "refund_amount": 23.21,
+      "restocking_fee": 4.1
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O034"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "27.31 * (1 - 0.15)"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O034 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T034"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": 8,
+      "eligible": true,
+      "order_id": "O035",
+      "reason": "within_refund_window",
+      "refund_amount": 334.01,
+      "restocking_fee": 58.94
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O035"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "392.95 * (1 - 0.15)"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O035 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T035"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": 9,
+      "eligible": true,
+      "order_id": "O036",
+      "reason": "within_refund_window",
+      "refund_amount": 396.11,
+      "restocking_fee": 69.9
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O036"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "466.01 * (1 - 0.15)"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O036 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T036"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": null,
+      "eligible": false,
+      "order_id": "O037",
+      "reason": "status_shipped",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O037"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O037 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T037"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": null,
+      "eligible": false,
+      "order_id": "O038",
+      "reason": "status_processing",
+      "refund_amount": 0.0,
+      "restocking_fee": 0.0
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O038"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "0"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O038 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T038"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": 16,
+      "eligible": true,
+      "order_id": "O039",
+      "reason": "within_refund_window",
+      "refund_amount": 607.72,
+      "restocking_fee": 107.24
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O039"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "714.96 * (1 - 0.15)"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O039 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T039"
+  },
+  {
+    "category": "refund_eligibility",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "schema_error",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "days_since_delivery": 19,
+      "eligible": true,
+      "order_id": "O040",
+      "reason": "within_refund_window",
+      "refund_amount": 197.95,
+      "restocking_fee": 34.93
+    },
+    "plan": [
+      {
+        "args": {
+          "order_id": "O040"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "topic": "refund"
+        },
+        "tool": "policy_lookup"
+      },
+      {
+        "args": {
+          "expression": "232.88 * (1 - 0.15)"
+        },
+        "tool": "calculator"
+      }
+    ],
+    "request": "Check whether order O040 is eligible for a refund and compute the amount.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T040"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 6,
+      "requested_quantity": 1,
+      "shipping_cost": 8.72,
+      "sku": "SKU001",
+      "stock": 23
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU001"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 2.37,
+          "zip": "98101"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C001 buy 1 units of SKU001, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 1,
+      "type": "exact_match"
+    },
+    "task_id": "T041"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 2,
+      "requested_quantity": 2,
+      "shipping_cost": 31.68,
+      "sku": "SKU002",
+      "stock": 18
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU002"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 18.06,
+          "zip": "10001"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C004 buy 2 units of SKU002, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 2,
+      "type": "exact_match"
+    },
+    "task_id": "T042"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 2,
+      "requested_quantity": 3,
+      "shipping_cost": 46.64,
+      "sku": "SKU003",
+      "stock": 33
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU003"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 28.29,
+          "zip": "19103"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C007 buy 3 units of SKU003, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 3,
+      "type": "exact_match"
+    },
+    "task_id": "T043"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 3,
+      "requested_quantity": 4,
+      "shipping_cost": 9.8,
+      "sku": "SKU004",
+      "stock": 41
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU004"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 3.44,
+          "zip": "30301"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C010 buy 4 units of SKU004, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 4,
+      "type": "exact_match"
+    },
+    "task_id": "T044"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 3,
+      "requested_quantity": 5,
+      "shipping_cost": 27.19,
+      "sku": "SKU005",
+      "stock": 77
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU005"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 16.6,
+          "zip": "33101"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C013 buy 5 units of SKU005, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 5,
+      "type": "exact_match"
+    },
+    "task_id": "T045"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 4,
+      "requested_quantity": 1,
+      "shipping_cost": 13.13,
+      "sku": "SKU006",
+      "stock": 35
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU006"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 6.3,
+          "zip": "60601"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C016 buy 1 units of SKU006, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 1,
+      "type": "exact_match"
+    },
+    "task_id": "T046"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 5,
+      "requested_quantity": 2,
+      "shipping_cost": 6.55,
+      "sku": "SKU007",
+      "stock": 70
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU007"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 0.98,
+          "zip": "73301"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C019 buy 2 units of SKU007, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 2,
+      "type": "exact_match"
+    },
+    "task_id": "T047"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 5,
+      "requested_quantity": 3,
+      "shipping_cost": 19.41,
+      "sku": "SKU008",
+      "stock": 27
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU008"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 10.17,
+          "zip": "80202"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C022 buy 3 units of SKU008, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 3,
+      "type": "exact_match"
+    },
+    "task_id": "T048"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 5,
+      "requested_quantity": 4,
+      "shipping_cost": 63.56,
+      "sku": "SKU009",
+      "stock": 26
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU009"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 41.88,
+          "zip": "85001"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C025 buy 4 units of SKU009, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 4,
+      "type": "exact_match"
+    },
+    "task_id": "T049"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 6,
+      "requested_quantity": 5,
+      "shipping_cost": 26.61,
+      "sku": "SKU010",
+      "stock": 45
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU010"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 14.6,
+          "zip": "94105"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C028 buy 5 units of SKU010, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 5,
+      "type": "exact_match"
+    },
+    "task_id": "T050"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 6,
+      "requested_quantity": 1,
+      "shipping_cost": 6.67,
+      "sku": "SKU011",
+      "stock": 36
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU011"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 0.97,
+          "zip": "98101"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C031 buy 1 units of SKU011, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 1,
+      "type": "exact_match"
+    },
+    "task_id": "T051"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 2,
+      "requested_quantity": 2,
+      "shipping_cost": 18.39,
+      "sku": "SKU012",
+      "stock": 82
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU012"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 8.98,
+          "zip": "10001"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C034 buy 2 units of SKU012, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 2,
+      "type": "exact_match"
+    },
+    "task_id": "T052"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 2,
+      "requested_quantity": 3,
+      "shipping_cost": 46.78,
+      "sku": "SKU013",
+      "stock": 60
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU013"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 28.38,
+          "zip": "19103"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C037 buy 3 units of SKU013, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 3,
+      "type": "exact_match"
+    },
+    "task_id": "T053"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 3,
+      "requested_quantity": 4,
+      "shipping_cost": 25.5,
+      "sku": "SKU014",
+      "stock": 15
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU014"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 15.32,
+          "zip": "30301"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C040 buy 4 units of SKU014, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 4,
+      "type": "exact_match"
+    },
+    "task_id": "T054"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 3,
+      "requested_quantity": 5,
+      "shipping_cost": 81.57,
+      "sku": "SKU015",
+      "stock": 20
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU015"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 57.75,
+          "zip": "33101"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C043 buy 5 units of SKU015, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 5,
+      "type": "exact_match"
+    },
+    "task_id": "T055"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 4,
+      "requested_quantity": 1,
+      "shipping_cost": 11.52,
+      "sku": "SKU016",
+      "stock": 49
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU016"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 5.01,
+          "zip": "60601"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C046 buy 1 units of SKU016, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 1,
+      "type": "exact_match"
+    },
+    "task_id": "T056"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 5,
+      "requested_quantity": 2,
+      "shipping_cost": 22.27,
+      "sku": "SKU017",
+      "stock": 74
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU017"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 12.88,
+          "zip": "73301"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C049 buy 2 units of SKU017, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 2,
+      "type": "exact_match"
+    },
+    "task_id": "T057"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 5,
+      "requested_quantity": 3,
+      "shipping_cost": 8.47,
+      "sku": "SKU018",
+      "stock": 28
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU018"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 2.31,
+          "zip": "80202"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C002 buy 3 units of SKU018, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 3,
+      "type": "exact_match"
+    },
+    "task_id": "T058"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 5,
+      "requested_quantity": 4,
+      "shipping_cost": 59.61,
+      "sku": "SKU019",
+      "stock": 46
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU019"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 39.04,
+          "zip": "85001"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C005 buy 4 units of SKU019, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 4,
+      "type": "exact_match"
+    },
+    "task_id": "T059"
+  },
+  {
+    "category": "stock_and_shipping",
+    "eligible_faults": [
+      "timeout",
+      "partial_response",
+      "stale_context",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "available": true,
+      "estimated_days": 6,
+      "requested_quantity": 5,
+      "shipping_cost": 84.48,
+      "sku": "SKU020",
+      "stock": 68
+    },
+    "plan": [
+      {
+        "args": {
+          "sku": "SKU020"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 54.15,
+          "zip": "94105"
+        },
+        "tool": "shipping_estimator"
+      }
+    ],
+    "request": "Can customer C008 buy 5 units of SKU020, and what would standard shipping cost?",
+    "success_criteria": {
+      "requested_quantity": 5,
+      "type": "exact_match"
+    },
+    "task_id": "T060"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "blake.brooks043@example.test",
+      "customer_id": "C043",
+      "estimated_days": 3,
+      "order_id": "O001",
+      "order_status": "delivered",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 1,
+      "shipping_cost": 17.5,
+      "sku": "SKU043"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C043"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O001"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU043"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 9.27,
+          "zip": "33101"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C043 on order O001, starting with SKU SKU043.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T061"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "gray.gupta048@example.test",
+      "customer_id": "C048",
+      "estimated_days": 6,
+      "order_id": "O002",
+      "order_status": "shipped",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 2,
+      "shipping_cost": 14.32,
+      "sku": "SKU050"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C048"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O002"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU050"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 6.2,
+          "zip": "94105"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C048 on order O002, starting with SKU SKU050.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T062"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "blake.brooks003@example.test",
+      "customer_id": "C003",
+      "estimated_days": 3,
+      "order_id": "O003",
+      "order_status": "processing",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 3,
+      "shipping_cost": 7.19,
+      "sku": "SKU007"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C003"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O003"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU007"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 1.47,
+          "zip": "33101"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C003 on order O003, starting with SKU SKU007.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T063"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "gray.gupta008@example.test",
+      "customer_id": "C008",
+      "estimated_days": 6,
+      "order_id": "O004",
+      "order_status": "delivered",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 1,
+      "shipping_cost": 10.85,
+      "sku": "SKU014"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C008"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O004"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU014"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 3.83,
+          "zip": "94105"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C008 on order O004, starting with SKU SKU014.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T064"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "blake.brooks013@example.test",
+      "customer_id": "C013",
+      "estimated_days": 3,
+      "order_id": "O005",
+      "order_status": "returned",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 2,
+      "shipping_cost": 23.12,
+      "sku": "SKU021"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C013"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O005"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU021"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 13.52,
+          "zip": "33101"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C013 on order O005, starting with SKU SKU021.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T065"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "gray.gupta018@example.test",
+      "customer_id": "C018",
+      "estimated_days": 6,
+      "order_id": "O006",
+      "order_status": "delivered",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 3,
+      "shipping_cost": 52.04,
+      "sku": "SKU028"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C018"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O006"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU028"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 31.98,
+          "zip": "94105"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C018 on order O006, starting with SKU SKU028.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T066"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "blake.brooks023@example.test",
+      "customer_id": "C023",
+      "estimated_days": 3,
+      "order_id": "O007",
+      "order_status": "shipped",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 1,
+      "shipping_cost": 14.75,
+      "sku": "SKU035"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C023"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O007"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU035"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 7.19,
+          "zip": "33101"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C023 on order O007, starting with SKU SKU035.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T067"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "gray.gupta028@example.test",
+      "customer_id": "C028",
+      "estimated_days": 6,
+      "order_id": "O008",
+      "order_status": "processing",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 2,
+      "shipping_cost": 30.65,
+      "sku": "SKU042"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C028"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O008"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU042"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 17.36,
+          "zip": "94105"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C028 on order O008, starting with SKU SKU042.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T068"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "blake.brooks033@example.test",
+      "customer_id": "C033",
+      "estimated_days": 3,
+      "order_id": "O009",
+      "order_status": "delivered",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 3,
+      "shipping_cost": 47.2,
+      "sku": "SKU049"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C033"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O009"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU049"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 31.74,
+          "zip": "33101"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C033 on order O009, starting with SKU SKU049.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T069"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "gray.gupta038@example.test",
+      "customer_id": "C038",
+      "estimated_days": 6,
+      "order_id": "O010",
+      "order_status": "returned",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 1,
+      "shipping_cost": 14.47,
+      "sku": "SKU006"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C038"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O010"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU006"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 6.3,
+          "zip": "94105"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C038 on order O010, starting with SKU SKU006.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T070"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "blake.brooks043@example.test",
+      "customer_id": "C043",
+      "estimated_days": 3,
+      "order_id": "O011",
+      "order_status": "delivered",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 2,
+      "shipping_cost": 30.25,
+      "sku": "SKU013"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C043"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O011"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU013"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 18.92,
+          "zip": "33101"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C043 on order O011, starting with SKU SKU013.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T071"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "gray.gupta048@example.test",
+      "customer_id": "C048",
+      "estimated_days": 6,
+      "order_id": "O012",
+      "order_status": "shipped",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 3,
+      "shipping_cost": 52.79,
+      "sku": "SKU020"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C048"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O012"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU020"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 32.49,
+          "zip": "94105"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C048 on order O012, starting with SKU SKU020.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T072"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "blake.brooks003@example.test",
+      "customer_id": "C003",
+      "estimated_days": 3,
+      "order_id": "O013",
+      "order_status": "processing",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 1,
+      "shipping_cost": 18.77,
+      "sku": "SKU027"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C003"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O013"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU027"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 10.23,
+          "zip": "33101"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C003 on order O013, starting with SKU SKU027.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T073"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "gray.gupta008@example.test",
+      "customer_id": "C008",
+      "estimated_days": 6,
+      "order_id": "O014",
+      "order_status": "delivered",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 2,
+      "shipping_cost": 33.17,
+      "sku": "SKU034"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C008"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O014"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU034"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 19.08,
+          "zip": "94105"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C008 on order O014, starting with SKU SKU034.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T074"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "blake.brooks013@example.test",
+      "customer_id": "C013",
+      "estimated_days": 3,
+      "order_id": "O015",
+      "order_status": "returned",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 3,
+      "shipping_cost": 19.6,
+      "sku": "SKU041"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C013"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O015"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU041"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 10.86,
+          "zip": "33101"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C013 on order O015, starting with SKU SKU041.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T075"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "gray.gupta018@example.test",
+      "customer_id": "C018",
+      "estimated_days": 6,
+      "order_id": "O016",
+      "order_status": "delivered",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 1,
+      "shipping_cost": 18.73,
+      "sku": "SKU048"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C018"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O016"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU048"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 9.21,
+          "zip": "94105"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C018 on order O016, starting with SKU SKU048.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T076"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "blake.brooks023@example.test",
+      "customer_id": "C023",
+      "estimated_days": 3,
+      "order_id": "O017",
+      "order_status": "shipped",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 2,
+      "shipping_cost": 14.03,
+      "sku": "SKU005"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C023"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O017"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU005"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 6.64,
+          "zip": "33101"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C023 on order O017, starting with SKU SKU005.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T077"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "gray.gupta028@example.test",
+      "customer_id": "C028",
+      "estimated_days": 6,
+      "order_id": "O018",
+      "order_status": "processing",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 3,
+      "shipping_cost": 24.96,
+      "sku": "SKU012"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C028"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O018"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU012"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 13.47,
+          "zip": "94105"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C028 on order O018, starting with SKU SKU012.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T078"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "blake.brooks033@example.test",
+      "customer_id": "C033",
+      "estimated_days": 3,
+      "order_id": "O019",
+      "order_status": "delivered",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 1,
+      "shipping_cost": 18.15,
+      "sku": "SKU019"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C033"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O019"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU019"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 9.76,
+          "zip": "33101"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C033 on order O019, starting with SKU SKU019.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T079"
+  },
+  {
+    "category": "multi_step_workflow",
+    "eligible_faults": [
+      "timeout",
+      "unavailable",
+      "rate_limit",
+      "stale_context",
+      "malformed_output",
+      "partial_response",
+      "semantic_wrong"
+    ],
+    "expected_answer": {
+      "contact_email": "gray.gupta038@example.test",
+      "customer_id": "C038",
+      "estimated_days": 6,
+      "order_id": "O020",
+      "order_status": "returned",
+      "policy_topic": "replacement",
+      "replacement_available": true,
+      "replacement_quantity": 2,
+      "shipping_cost": 35.36,
+      "sku": "SKU026"
+    },
+    "plan": [
+      {
+        "args": {
+          "customer_id": "C038"
+        },
+        "tool": "customer_lookup"
+      },
+      {
+        "args": {
+          "order_id": "O020"
+        },
+        "tool": "order_lookup"
+      },
+      {
+        "args": {
+          "sku": "SKU026"
+        },
+        "tool": "inventory_lookup"
+      },
+      {
+        "args": {
+          "weight": 20.58,
+          "zip": "94105"
+        },
+        "tool": "shipping_estimator"
+      },
+      {
+        "args": {
+          "topic": "replacement"
+        },
+        "tool": "policy_lookup"
+      }
+    ],
+    "request": "Prepare a replacement workflow for C038 on order O020, starting with SKU SKU026.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T080"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": true,
+      "conflicts": [
+        "cancelled",
+        "delivered"
+      ],
+      "resolved_value": "delivered"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is delivered.",
+          "sources": [
+            {
+              "confidence": 0.45,
+              "source": "email_thread",
+              "value": "cancelled"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "delivered"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "cancelled"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O031.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T081"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": false,
+      "conflicts": [
+        "cancelled",
+        "shipped"
+      ],
+      "resolved_value": "shipped"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is cancelled.",
+          "sources": [
+            {
+              "confidence": 0.5,
+              "source": "email_thread",
+              "value": "cancelled"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "shipped"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "shipped"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O032.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T082"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": true,
+      "conflicts": [
+        "cancelled",
+        "processing"
+      ],
+      "resolved_value": "processing"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is processing.",
+          "sources": [
+            {
+              "confidence": 0.55,
+              "source": "email_thread",
+              "value": "cancelled"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "processing"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "processing"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O033.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T083"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": false,
+      "conflicts": [
+        "delivered",
+        "returned"
+      ],
+      "resolved_value": "delivered"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is returned.",
+          "sources": [
+            {
+              "confidence": 0.45,
+              "source": "email_thread",
+              "value": "returned"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "delivered"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "returned"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O034.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T084"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": true,
+      "conflicts": [
+        "processing",
+        "returned"
+      ],
+      "resolved_value": "returned"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is returned.",
+          "sources": [
+            {
+              "confidence": 0.5,
+              "source": "email_thread",
+              "value": "processing"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "returned"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "returned"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O035.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T085"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": false,
+      "conflicts": [
+        "delivered",
+        "processing"
+      ],
+      "resolved_value": "delivered"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is processing.",
+          "sources": [
+            {
+              "confidence": 0.55,
+              "source": "email_thread",
+              "value": "processing"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "delivered"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "delivered"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O036.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T086"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": true,
+      "conflicts": [
+        "processing",
+        "shipped"
+      ],
+      "resolved_value": "shipped"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is shipped.",
+          "sources": [
+            {
+              "confidence": 0.45,
+              "source": "email_thread",
+              "value": "processing"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "shipped"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "processing"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O037.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T087"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": false,
+      "conflicts": [
+        "processing",
+        "shipped"
+      ],
+      "resolved_value": "processing"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is shipped.",
+          "sources": [
+            {
+              "confidence": 0.5,
+              "source": "email_thread",
+              "value": "shipped"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "processing"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "processing"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O038.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T088"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": true,
+      "conflicts": [
+        "cancelled",
+        "delivered"
+      ],
+      "resolved_value": "delivered"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is delivered.",
+          "sources": [
+            {
+              "confidence": 0.55,
+              "source": "email_thread",
+              "value": "cancelled"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "delivered"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "delivered"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O039.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T089"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": false,
+      "conflicts": [
+        "returned",
+        "shipped"
+      ],
+      "resolved_value": "returned"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is shipped.",
+          "sources": [
+            {
+              "confidence": 0.45,
+              "source": "email_thread",
+              "value": "shipped"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "returned"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "shipped"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O040.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T090"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": true,
+      "conflicts": [
+        "delivered",
+        "shipped"
+      ],
+      "resolved_value": "delivered"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is delivered.",
+          "sources": [
+            {
+              "confidence": 0.5,
+              "source": "email_thread",
+              "value": "shipped"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "delivered"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "delivered"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O041.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T091"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": false,
+      "conflicts": [
+        "delivered",
+        "shipped"
+      ],
+      "resolved_value": "shipped"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is delivered.",
+          "sources": [
+            {
+              "confidence": 0.55,
+              "source": "email_thread",
+              "value": "delivered"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "shipped"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "shipped"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O042.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T092"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": true,
+      "conflicts": [
+        "delivered",
+        "processing"
+      ],
+      "resolved_value": "processing"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is processing.",
+          "sources": [
+            {
+              "confidence": 0.45,
+              "source": "email_thread",
+              "value": "delivered"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "processing"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "delivered"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O043.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T093"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": false,
+      "conflicts": [
+        "delivered",
+        "processing"
+      ],
+      "resolved_value": "delivered"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is processing.",
+          "sources": [
+            {
+              "confidence": 0.5,
+              "source": "email_thread",
+              "value": "processing"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "delivered"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "delivered"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O044.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T094"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": true,
+      "conflicts": [
+        "delivered",
+        "returned"
+      ],
+      "resolved_value": "returned"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is returned.",
+          "sources": [
+            {
+              "confidence": 0.55,
+              "source": "email_thread",
+              "value": "delivered"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "returned"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "returned"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O045.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T095"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": false,
+      "conflicts": [
+        "delivered",
+        "returned"
+      ],
+      "resolved_value": "delivered"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is returned.",
+          "sources": [
+            {
+              "confidence": 0.45,
+              "source": "email_thread",
+              "value": "returned"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "delivered"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "returned"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O046.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T096"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": true,
+      "conflicts": [
+        "returned",
+        "shipped"
+      ],
+      "resolved_value": "shipped"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is shipped.",
+          "sources": [
+            {
+              "confidence": 0.5,
+              "source": "email_thread",
+              "value": "returned"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "shipped"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "shipped"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O047.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T097"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": false,
+      "conflicts": [
+        "processing",
+        "returned"
+      ],
+      "resolved_value": "processing"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is returned.",
+          "sources": [
+            {
+              "confidence": 0.55,
+              "source": "email_thread",
+              "value": "returned"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "processing"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "processing"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O048.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T098"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": true,
+      "conflicts": [
+        "delivered",
+        "shipped"
+      ],
+      "resolved_value": "delivered"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is delivered.",
+          "sources": [
+            {
+              "confidence": 0.45,
+              "source": "email_thread",
+              "value": "shipped"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "delivered"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "shipped"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O049.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T099"
+  },
+  {
+    "category": "contradiction_resolution",
+    "eligible_faults": [
+      "contradictory_evidence",
+      "semantic_wrong",
+      "malformed_output",
+      "partial_response"
+    ],
+    "expected_answer": {
+      "best_source": "order_system",
+      "claim_supported": false,
+      "conflicts": [
+        "cancelled",
+        "returned"
+      ],
+      "resolved_value": "returned"
+    },
+    "plan": [
+      {
+        "args": {
+          "claim": "The order status is cancelled.",
+          "sources": [
+            {
+              "confidence": 0.5,
+              "source": "email_thread",
+              "value": "cancelled"
+            },
+            {
+              "confidence": 0.95,
+              "source": "order_system",
+              "value": "returned"
+            },
+            {
+              "confidence": 0.7,
+              "source": "warehouse_note",
+              "value": "returned"
+            }
+          ]
+        },
+        "tool": "evidence_checker"
+      }
+    ],
+    "request": "Resolve conflicting evidence about the status of order O050.",
+    "success_criteria": {
+      "type": "exact_match"
+    },
+    "task_id": "T100"
+  }
+]
