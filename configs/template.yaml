@@ -1,0 +1,42 @@
+# HealAgent experiment template.
+# Copy this file and edit for a concrete run. Field names follow
+# docs/implementation.md (P0-T6).
+
+# Master seeds. One deterministic run per seed.
+seeds: [0, 1, 2, 3, 4]
+
+# Number of episodes per task/policy run.
+episodes: 50
+
+# Fault intensity (lambda) applied per eligible tool step.
+# Primary regime: 0.0-0.3. Stress regime: 0.4-0.5.
+fault_intensity: 0.2
+
+# Policy selection.
+policy:
+  name: bandit          # retry_only | static | bandit
+  algorithm: ucb1       # epsilon_greedy | ucb1 | thompson  (bandit only)
+  epsilon: 0.1          # epsilon-greedy starting value
+  epsilon_min: 0.01
+  epsilon_decay: 0.995
+  start: cold           # cold | warm
+  discount: 1.0         # gamma for arm statistics (1.0 disables discounting)
+  window: null          # optional sliding window size (null disables)
+  use_mask: true        # respect the feasibility mask
+  use_cost_term: true   # include cost/latency in the reward
+
+# Per-task budget.
+budget:
+  attempts: 3           # recovery attempts
+  cost: 25.0            # cost-proxy units
+  latency_ms: 4000.0    # simulated latency budget
+
+# Reward weights: r = success - lambda*cost - mu*latency.
+lambda: 0.05
+mu: 0.01
+
+# Environment drift event.
+drift:
+  episode: 30
+  tool: order_lookup
+  new_profile: order_lookup_rate_limit_persistent
