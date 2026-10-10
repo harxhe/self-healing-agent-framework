@@ -121,18 +121,18 @@ class Policy(Protocol):
 **Goal:** A trustworthy simulated e-commerce world where all 100 tasks pass with zero faults.
 
 **Tasks**
-- [ ] **P1-T1** Implement `data/generator.py`: seeded synthetic data, about 50 customers, 50 orders, 50 SKUs, a policy table (refund window, restocking fee, shipping rules). Data must be internally consistent so expected answers are always computable.
-- [ ] **P1-T2** Implement tools in `tools/`, each with a Pydantic input schema and deterministic output: `customer_lookup(customer_id)`, `order_lookup(order_id)`, `inventory_lookup(sku)`, `shipping_estimator(zip, weight)`, `policy_lookup(topic)`, `calculator(expression)`, `evidence_checker(claim, sources)`.
-- [ ] **P1-T3** Implement **backup tools** for substitution: `shipping_estimator_backup`, `refund_calculator` (substitute for `calculator`), `order_lookup_backup`. Define a `SUBSTITUTES` map in `tools/registry.py`. Tools without a backup must be absent from the map (this drives the feasibility mask in Phase 4).
-- [ ] **P1-T4** Implement `tools/registry.py`: lookup by name, schema listing, `SUBSTITUTES`.
-- [ ] **P1-T5** Define the 100 tasks in `tasks/tasks.json`, 20 per category: (1) order status, (2) refund eligibility, (3) stock and shipping, (4) multi-step workflow, (5) contradiction resolution. Each task has: `task_id, category, request, plan (ordered tool calls with args), expected_answer, success_criteria, eligible_faults`.
-- [ ] **P1-T6** Implement `tasks/executor.py`: runs a plan step by step through the registry, collects observations, and produces a final answer by a scripted answer function (no LLM).
-- [ ] **P1-T7** Implement `tasks/checker.py`: compares the final answer to `expected_answer` per `success_criteria`.
+- [x] **P1-T1** Implement `data/generator.py`: seeded synthetic data, about 50 customers, 50 orders, 50 SKUs, a policy table (refund window, restocking fee, shipping rules). Data must be internally consistent so expected answers are always computable.
+- [x] **P1-T2** Implement tools in `tools/`, each with a Pydantic input schema and deterministic output: `customer_lookup(customer_id)`, `order_lookup(order_id)`, `inventory_lookup(sku)`, `shipping_estimator(zip, weight)`, `policy_lookup(topic)`, `calculator(expression)`, `evidence_checker(claim, sources)`.
+- [x] **P1-T3** Implement **backup tools** for substitution: `shipping_estimator_backup`, `refund_calculator` (substitute for `calculator`), `order_lookup_backup`. Define a `SUBSTITUTES` map in `tools/registry.py`. Tools without a backup must be absent from the map (this drives the feasibility mask in Phase 4).
+- [x] **P1-T4** Implement `tools/registry.py`: lookup by name, schema listing, `SUBSTITUTES`.
+- [x] **P1-T5** Define the 100 tasks in `tasks/tasks.json`, 20 per category: (1) order status, (2) refund eligibility, (3) stock and shipping, (4) multi-step workflow, (5) contradiction resolution. Each task has: `task_id, category, request, plan (ordered tool calls with args), expected_answer, success_criteria, eligible_faults`.
+- [x] **P1-T6** Implement `tasks/executor.py`: runs a plan step by step through the registry, collects observations, and produces a final answer by a scripted answer function (no LLM).
+- [x] **P1-T7** Implement `tasks/checker.py`: compares the final answer to `expected_answer` per `success_criteria`.
 
 **Acceptance checks**
-- [ ] `pytest tests/test_tasks_nofault.py`: all 100 tasks pass at 100% with zero faults.
-- [ ] Running the full suite twice with the same seed gives identical outputs.
-- [ ] Every tool rejects invalid arguments with a schema error.
+- [x] `pytest tests/test_tasks_nofault.py`: all 100 tasks pass at 100% with zero faults.
+- [x] Running the full suite twice with the same seed gives identical outputs.
+- [x] Every tool rejects invalid arguments with a schema error.
 
 ---
 
@@ -270,7 +270,7 @@ Update this table as phases finish.
 | Phase | Status | Notes |
 |---|---|---|
 | 0 Setup and contracts | ✅ | contracts fixed; 9 tests passing |
-| 1 Environment | ☐ | |
+| 1 Environment | ✅ | 100 deterministic no-fault tasks; 22 tests passing |
 | 2 Fault injector | ☐ | |
 | 3 Control plane and baselines | ☐ | |
 | 4 Ledger and bandit | ☐ | |
