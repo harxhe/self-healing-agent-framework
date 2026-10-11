@@ -1,1 +1,76 @@
 """Fault types, per-tool profiles, schedule, and drift."""
+
+from .drift import (
+    DRIFT_PROFILES,
+    DriftEvent,
+    apply_drift,
+    build_drift_record,
+    drift_event_from_config,
+    due_drift_events,
+    log_drift_event,
+    resolve_drift_profile,
+)
+from .injector import FaultEvent, FaultInjector
+from .profiles import (
+    Persistence,
+    FaultProfile,
+    action_fixes,
+    default_profile_for,
+    default_profiles,
+    get_profile,
+)
+from .schedule import (
+    INTENSITY_LEVELS,
+    PRIMARY_REGIME,
+    STRESS_REGIME,
+    FaultDecision,
+    FaultSchedule,
+    validate_intensity,
+)
+from .types import (
+    FAULT_KIND_VALUES,
+    FAULT_TO_FAILURE_CLASS,
+    FAILURE_CLASS_TO_FAULT,
+    HARD_FAULTS,
+    SILENT_FAULTS,
+    FaultContext,
+    FaultKind,
+    apply_fault,
+    eligible_fault_kinds,
+    to_failure_class,
+)
+
+__all__ = [
+    "DRIFT_PROFILES",
+    "DriftEvent",
+    "apply_drift",
+    "build_drift_record",
+    "drift_event_from_config",
+    "due_drift_events",
+    "log_drift_event",
+    "resolve_drift_profile",
+    "FaultEvent",
+    "FaultInjector",
+    "Persistence",
+    "FaultProfile",
+    "action_fixes",
+    "default_profile_for",
+    "default_profiles",
+    "get_profile",
+    "INTENSITY_LEVELS",
+    "PRIMARY_REGIME",
+    "STRESS_REGIME",
+    "FaultDecision",
+    "FaultSchedule",
+    "validate_intensity",
+    "FAULT_KIND_VALUES",
+    "FAULT_TO_FAILURE_CLASS",
+    "FAILURE_CLASS_TO_FAULT",
+    "HARD_FAULTS",
+    "SILENT_FAULTS",
+    "FaultContext",
+    "FaultKind",
+    "apply_fault",
+    "eligible_fault_kinds",
+    "to_failure_class",
+]
