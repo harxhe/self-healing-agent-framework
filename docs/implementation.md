@@ -141,23 +141,23 @@ class Policy(Protocol):
 **Goal:** Deterministic, task-aware faults designed so that a fixed failure → action mapping is sometimes wrong.
 
 **Tasks**
-- [ ] **P2-T1** Implement fault types in `faults/types.py`, each as a transformation of a `ToolResult`: `timeout`, `unavailable`, `rate_limit`, `schema_drift/malformed_args`, `malformed_output`, `partial_response`, `stale_context`, `semantic_wrong` (syntactically valid but wrong value that violates the success criterion).
-- [ ] **P2-T2** Implement per-tool **fault profiles** in `faults/profiles.py`. Each profile defines, per `(tool, fault)`: whether it is **transient** or **persistent**, and which actions actually fix it. Required profiles:
+- [x] **P2-T1** Implement fault types in `faults/types.py`, each as a transformation of a `ToolResult`: `timeout`, `unavailable`, `rate_limit`, `schema_drift/malformed_args`, `malformed_output`, `partial_response`, `stale_context`, `semantic_wrong` (syntactically valid but wrong value that violates the success criterion).
+- [x] **P2-T2** Implement per-tool **fault profiles** in `faults/profiles.py`. Each profile defines, per `(tool, fault)`: whether it is **transient** or **persistent**, and which actions actually fix it. Required profiles:
   - `shipping_estimator` timeout: persistent (retry fails, substitute works).
   - `customer_lookup` timeout: transient (retry works, cheapest).
   - `policy_lookup` partial_response: fixed by `refresh`, not by retry.
   - `calculator` semantic_wrong: only verifier-driven regenerate/substitute fixes it.
   - `inventory_lookup` stale_context: fixed by `refresh`.
   - `order_lookup` rate_limit: initially fixed by retry-with-backoff (changes under drift).
-- [ ] **P2-T3** Implement `faults/schedule.py`: whether a fault fires at a step is a deterministic function of `(task_id, step, trial_seed, intensity, recovery_attempt)`. All policies must see identical faults for the same `(task, seed)`.
-- [ ] **P2-T4** Implement intensity `λ ∈ {0.0, 0.1, 0.2, 0.3, 0.4, 0.5}` applied per eligible tool step. Primary regime: 0.0–0.3. Stress regime: 0.4–0.5.
-- [ ] **P2-T5** Implement `faults/drift.py`: at episode `N` (from config), swap a tool's profile (default: `order_lookup` starts rate limiting such that retry no longer works and only `substitute` works). Log the drift event to the trace.
-- [ ] **P2-T6** Implement `faults/injector.py`: wraps any tool, consults the schedule and profile, and returns the faulted `ToolResult` with `fault_injected` set. Must model whether each recovery action succeeds, according to the profile.
+- [x] **P2-T3** Implement `faults/schedule.py`: whether a fault fires at a step is a deterministic function of `(task_id, step, trial_seed, intensity, recovery_attempt)`. All policies must see identical faults for the same `(task, seed)`.
+- [x] **P2-T4** Implement intensity `λ ∈ {0.0, 0.1, 0.2, 0.3, 0.4, 0.5}` applied per eligible tool step. Primary regime: 0.0–0.3. Stress regime: 0.4–0.5.
+- [x] **P2-T5** Implement `faults/drift.py`: at episode `N` (from config), swap a tool's profile (default: `order_lookup` starts rate limiting such that retry no longer works and only `substitute` works). Log the drift event to the trace.
+- [x] **P2-T6** Implement `faults/injector.py`: wraps any tool, consults the schedule and profile, and returns the faulted `ToolResult` with `fault_injected` set. Must model whether each recovery action succeeds, according to the profile.
 
 **Acceptance checks**
-- [ ] `pytest tests/test_fault_determinism.py`: fault logs for two different policies are identical for the same `(task, seed, intensity)`.
-- [ ] `pytest tests/test_drift.py`: before the drift episode, retry fixes `order_lookup` rate limits; after it, retry fails and substitute works.
-- [ ] A printed fault summary shows all 7 fault types occur and the per-tool transient/persistent behavior matches the profiles.
+- [x] `pytest tests/test_fault_determinism.py`: fault logs for two different policies are identical for the same `(task, seed, intensity)`.
+- [x] `pytest tests/test_drift.py`: before the drift episode, retry fixes `order_lookup` rate limits; after it, retry fails and substitute works.
+- [x] A printed fault summary shows all 7 fault types occur and the per-tool transient/persistent behavior matches the profiles.
 
 ---
 
@@ -271,7 +271,7 @@ Update this table as phases finish.
 |---|---|---|
 | 0 Setup and contracts | ✅ | contracts fixed; 9 tests passing |
 | 1 Environment | ✅ | 100 deterministic no-fault tasks; 22 tests passing |
-| 2 Fault injector | ☐ | |
+| 2 Fault injector | ✅ | deterministic profiles, schedule, drift; 39 tests passing |
 | 3 Control plane and baselines | ☐ | |
 | 4 Ledger and bandit | ☐ | |
 | 5 Experiments | ☐ | |

@@ -6,9 +6,9 @@ session and on every meaningful change. The authoritative plan lives in
 
 ## Current Status
 
-- **Active phase:** Phase 2 - Fault injector
-- **Last completed phase:** Phase 1 - Environment (tools, data, tasks)
-- **Next unchecked task:** P2-T1 - implement `faults/types.py`
+- **Active phase:** Phase 3 - Control plane and baselines
+- **Last completed phase:** Phase 2 - Fault injector
+- **Next unchecked task:** P3-T1 - implement `control/detector.py`
 
 ## Phase Tracker
 
@@ -16,8 +16,8 @@ session and on every meaningful change. The authoritative plan lives in
 |---|---|---|
 | 0 Setup and contracts | complete | contracts fixed; 9 tests passing |
 | 1 Environment | complete | 100 deterministic no-fault tasks; 22 tests passing |
-| 2 Fault injector | in progress | next up |
-| 3 Control plane and baselines | not started | |
+| 2 Fault injector | complete | deterministic profiles, schedule, drift; 39 tests passing |
+| 3 Control plane and baselines | in progress | next up |
 | 4 Ledger and bandit | not started | |
 | 5 Experiments | not started | |
 | 6 Dashboard, report, demo | not started | |
@@ -43,6 +43,15 @@ session and on every meaningful change. The authoritative plan lives in
 - [x] P1-T6 `tasks/executor.py` scripted no-LLM execution
 - [x] P1-T7 `tasks/checker.py` exact-match success checks
 
+## Phase 2 Task Log
+
+- [x] P2-T1 `faults/types.py` deterministic ToolResult fault transformations
+- [x] P2-T2 `faults/profiles.py` per-tool transient/persistent profiles + `fixed_by`
+- [x] P2-T3 `faults/schedule.py` policy-independent deterministic fault firing
+- [x] P2-T4 intensity levels `{0.0..0.5}`, primary/stress regimes
+- [x] P2-T5 `faults/drift.py` profile swap + drift trace logging
+- [x] P2-T6 `faults/injector.py` wraps tools, models recovery-action success
+
 ## Acceptance Checks
 
 - [x] `pytest tests/test_seed.py` - determinism of named RNG streams
@@ -50,6 +59,9 @@ session and on every meaningful change. The authoritative plan lives in
 - [x] `pytest tests/test_tasks_nofault.py` - all 100 tasks pass with zero faults
 - [x] Full suite repeated deterministically for the no-fault executor outputs
 - [x] `pytest tests/test_tools.py` - all tools reject invalid arguments with schema errors
+- [x] `pytest tests/test_fault_determinism.py` - identical faults for same `(task, seed, intensity)` across policies
+- [x] `pytest tests/test_drift.py` - retry fixes `order_lookup` rate limits before drift, fails after (substitute works)
+- [x] `pytest tests/test_fault_summary.py` - all fault kinds occur; transient/persistent matches profiles
 
 ## Session Notes
 
@@ -59,3 +71,8 @@ session and on every meaningful change. The authoritative plan lives in
 - 2026-10-10: Phase 1 complete - deterministic data, tools, backups,
   registry, task catalog, executor, and checker implemented; full suite green
   (22 tests). Next: Phase 2 fault injector (`faults/types.py`).
+- 2026-10-10: Phase 2 complete - fault types, per-tool profiles, deterministic
+  schedule, drift, and injector implemented; full suite green (39 tests).
+  Note: P2-T1 lists 8 injectable fault kinds (not 7); `faults/types.py`
+  implements all 8 and the summary test asserts every kind occurs.
+  Next: Phase 3 control plane and baselines.
