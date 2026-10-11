@@ -166,9 +166,9 @@ class Policy(Protocol):
 **Goal:** The paper's Monitor → Detect → Diagnose → Recover → Verify loop, plus the Retry-Only and Static baselines.
 
 **Tasks**
-- [ ] **P3-T1** Implement `control/detector.py`: converts a `ToolResult` and execution state into a failure signal (exception, timeout, schema violation, empty/partial output, verifier rejection, repeated-action pattern) or `None`.
-- [ ] **P3-T2** Implement `control/diagnoser.py`: maps a signal and state to a `Signature(failure_class, tool, attempt)`.
-- [ ] **P3-T3** Implement `control/actions.py`: executable recovery actions, each returning a new observation and its cost and latency:
+- [x] **P3-T1** Implement `control/detector.py`: converts a `ToolResult` and execution state into a failure signal (exception, timeout, schema violation, empty/partial output, verifier rejection, repeated-action pattern) or `None`.
+- [x] **P3-T2** Implement `control/diagnoser.py`: maps a signal and state to a `Signature(failure_class, tool, attempt)`.
+- [x] **P3-T3** Implement `control/actions.py`: executable recovery actions, each returning a new observation and its cost and latency:
   - `retry` (with exponential backoff; simulated latency grows per attempt)
   - `repair` (regenerate/fix arguments)
   - `substitute` (use `SUBSTITUTES[tool]`; infeasible if none)
@@ -176,20 +176,20 @@ class Policy(Protocol):
   - `replan` (restart from the last stable checkpoint; higher cost)
   - `degrade` (return partial result with an uncertainty notice)
   - `escalate`, `terminate`
-- [ ] **P3-T4** Implement `control/verifier.py`: oracle check against the task `success_criteria` and tool ground truth. On rejection, emit a `semantic_wrong` signal into the loop. Count verifier calls for the cost proxy. Docstring must state it is an oracle.
-- [ ] **P3-T5** Implement `control/budget.py`: per-task budget for attempts, cost, latency, and recovery depth. Failed recovery still consumes budget. Expose `exhausted()`.
-- [ ] **P3-T6** Implement `control/orchestrator.py`: the main loop (follow Algorithm 1 of the paper): execute step → detect → (if failure) diagnose → ask `policy.select(signature, mask)` → apply action → verify → `policy.update(...)` → log trace → continue until done or budget exhausted; finish with final verification, degrade, or escalate.
-- [ ] **P3-T7** Implement `control/mask.py`: `feasible_actions(signature, tool)` returning the set of allowed actions (e.g. `substitute` only if the tool has a backup; no `refresh` for pure computation tools).
-- [ ] **P3-T8** Implement baselines in `policy/`:
+- [x] **P3-T4** Implement `control/verifier.py`: oracle check against the task `success_criteria` and tool ground truth. On rejection, emit a `semantic_wrong` signal into the loop. Count verifier calls for the cost proxy. Docstring must state it is an oracle.
+- [x] **P3-T5** Implement `control/budget.py`: per-task budget for attempts, cost, latency, and recovery depth. Failed recovery still consumes budget. Expose `exhausted()`.
+- [x] **P3-T6** Implement `control/orchestrator.py`: the main loop (follow Algorithm 1 of the paper): execute step → detect → (if failure) diagnose → ask `policy.select(signature, mask)` → apply action → verify → `policy.update(...)` → log trace → continue until done or budget exhausted; finish with final verification, degrade, or escalate.
+- [x] **P3-T7** Implement `control/mask.py`: `feasible_actions(signature, tool)` returning the set of allowed actions (e.g. `substitute` only if the tool has a backup; no `refresh` for pure computation tools).
+- [x] **P3-T8** Implement baselines in `policy/`:
   - `RetryOnly`: always `retry` up to a fixed limit, then terminate.
   - `StaticMapping`: the paper's failure-class → action table (timeout→retry then substitute; schema_error→repair; malformed_output→repair/alt tool; partial_response→repair; stale_context→refresh; contradictory_evidence→cross-check/verifier; semantic_wrong→regenerate with verification; control_loop→replan/degrade).
-- [ ] **P3-T9** Implement a runner `experiments/run.py` that takes a config, runs `(tasks × policy × seeds)`, and writes traces and a per-run summary CSV.
+- [x] **P3-T9** Implement a runner `experiments/run.py` that takes a config, runs `(tasks × policy × seeds)`, and writes traces and a per-run summary CSV.
 
 **Acceptance checks**
-- [ ] `pytest tests/test_orchestrator.py`: a task with one injected timeout is detected, diagnosed, recovered, verified, and logged.
-- [ ] With intensity 0.0, all policies reach 100% TSR.
-- [ ] With intensity 0.2–0.3, `StaticMapping` TSR > `RetryOnly` TSR, and traces exist for both.
-- [ ] Budget exhaustion ends the task through `degrade`/`escalate`, with no infinite loops.
+- [x] `pytest tests/test_orchestrator.py`: a task with one injected timeout is detected, diagnosed, recovered, verified, and logged.
+- [x] With intensity 0.0, all policies reach 100% TSR.
+- [x] With intensity 0.2–0.3, `StaticMapping` TSR > `RetryOnly` TSR, and traces exist for both.
+- [x] Budget exhaustion ends the task through `degrade`/`escalate`, with no infinite loops.
 
 ---
 
@@ -272,7 +272,7 @@ Update this table as phases finish.
 | 0 Setup and contracts | ✅ | contracts fixed; 9 tests passing |
 | 1 Environment | ✅ | 100 deterministic no-fault tasks; 22 tests passing |
 | 2 Fault injector | ✅ | deterministic profiles, schedule, drift; 39 tests passing |
-| 3 Control plane and baselines | ☐ | |
+| 3 Control plane and baselines | ✅ | loop + baselines; Static (0.99) > Retry (0.67) at intensity 0.2; 46 tests passing |
 | 4 Ledger and bandit | ☐ | |
 | 5 Experiments | ☐ | |
 | 6 Dashboard, report, demo | ☐ | |
