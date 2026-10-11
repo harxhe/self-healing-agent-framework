@@ -18,7 +18,7 @@ from healagent.core.interfaces import Tool
 from healagent.core.types import Action, ToolResult
 
 from .profiles import FaultProfile, default_profiles, get_profile
-from .schedule import FaultSchedule, validate_intensity
+from .schedule import FaultDecision, FaultSchedule, validate_intensity
 from .types import FaultContext, FaultKind, apply_fault
 
 
@@ -40,12 +40,22 @@ class FaultInjector:
         trial_seed: int,
         intensity: float = 0.0,
         profiles: Mapping[tuple[str, FaultKind], FaultProfile] | None = None,
+        forced_faults: Mapping[tuple[str, int], FaultKind] | None = None,
     ) -> None:
         self.trial_seed = int(trial_seed)
         self.intensity = validate_intensity(intensity)
         self.schedule = FaultSchedule(self.trial_seed)
         self.profiles: dict[tuple[str, FaultKind], FaultProfile] = (
             dict(profiles) if profiles is not None else default_profiles()
+        )
+        self.forced_faults: dict[tuple[str, int], FaultKind] = dict(forced_faults or {})
+
+    def _decision(self, task_id, step, eligible_faults, recovery_attempt):
+        forced = self.forced_faults.get((task_id, step))
+        if forced is not None:
+            return FaultDecision(fires=True, fault=forced)
+        return self.schedule.decision(
+            task_id, step, self.intensity, eligible_faults, recovery_attempt
         )
 
     def profile_for(self, tool: str, fault: FaultKind) -> FaultProfile:
@@ -64,9 +74,7 @@ class FaultInjector:
         recovery_attempt: int = 0,
     ) -> ToolResult:
         base = tool.call(args)
-        decision = self.schedule.decision(
-            task_id, step, self.intensity, eligible_faults, recovery_attempt
-        )
+        decision = self._decision(task_id, step, eligible_faults, recovery_attempt)
         if not decision.fires or decision.fault is None:
             return base
         context = FaultContext(
@@ -114,9 +122,7 @@ class FaultInjector:
 
         events: list[FaultEvent] = []
         for index, step in enumerate(steps, start=1):
-            decision = self.schedule.decision(
-                task_id, index, self.intensity, eligible_faults, recovery_attempt
-            )
+            decision = self._decision(task_id, index, eligible_faults, recovery_attempt)
             events.append(
                 FaultEvent(
                     task_id=task_id,
