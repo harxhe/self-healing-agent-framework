@@ -6,9 +6,9 @@ session and on every meaningful change. The authoritative plan lives in
 
 ## Current Status
 
-- **Active phase:** Phase 6 - Dashboard, report, and demo
-- **Last completed phase:** Phase 5 - Experiments
-- **Next unchecked task:** P6-T1 - build the Streamlit dashboard
+- **Active phase:** None
+- **Last completed phase:** Phase 6 - Dashboard, report, and demo
+- **Next unchecked task:** None (optional P6-T6 live-LLM sanity check skipped)
 
 ## Phase Tracker
 
@@ -20,7 +20,7 @@ session and on every meaningful change. The authoritative plan lives in
 | 3 Control plane and baselines | complete | loop + baselines; 46 tests passing |
 | 4 Ledger and bandit | complete | seeded algorithms; SQLite ledger; toy, mask, discount, persistence checks |
 | 5 Experiments | complete | E1-E5, ten paired seeds, 95% CIs, post-drift checkpoint passed |
-| 6 Dashboard, report, demo | not started | |
+| 6 Dashboard, report, demo | complete | Four-view Streamlit replay app; deterministic D1-D5 traces; report; 14-slide browser deck; five phase captures; four-minute silent backup video |
 
 ## Phase 0 Task Log
 
@@ -87,6 +87,17 @@ session and on every meaningful change. The authoritative plan lives in
 - [x] P5-T8 `python -m experiments.run_all --config configs/phase5.yaml` regenerates artifacts
 - [x] Checkpoint: bandit regained pre-drift TSR in 1.5 episodes on average vs. 2.5 for StaticMapping; environment unchanged
 
+## Phase 6 Task Log
+
+- [x] P6-T1 `dashboard/app.py` - trace viewer, success-rate heatmap, paired policy comparison, drift toggle
+- [x] P6-T2 replay fixed-seed traces from `results/` with bundled `dashboard/data/` fallback; cold-start N-episode replay executes the orchestrator
+- [x] P6-T3 deterministic D1-D5 scenarios, including refund refresh, 50-episode learning, order-lookup drift, and oracle-detected calculator error
+- [x] P6-T4 `report/report.md` separates paper-derived architecture from project contributions and states simulation limits
+- [x] P6-T5 14-slide browser presentation with project results and paper attribution; no paper numbers presented as project results
+- [ ] P6-T6 optional live-LLM sanity check skipped; main pipeline remains offline and deterministic
+- [x] P6-T7 README setup/reproduction/layout/citation updated; local `v1.0` tag created after milestone commit
+- [x] P6-T8 D1-D5 still captures and four-minute silent slideshow backup at `report/demo/`
+
 ## Acceptance Checks
 
 - [x] `pytest tests/test_seed.py` - determinism of named RNG streams
@@ -105,6 +116,11 @@ session and on every meaningful change. The authoritative plan lives in
 - [x] Ledger reopen/reset persistence check
 - [x] `python -m experiments.run_all --config configs/phase5.yaml` - all E1-E5 artifacts and heatmap regenerated
 - [x] `python -m pytest -q` - 67 tests passed
+- [x] `streamlit run dashboard/app.py` - four dashboard views render from recorded or bundled results
+- [x] Dashboard AppTest - all four view paths and cold-start episode replay complete without exceptions
+- [x] `python -m pytest -q` - 68 tests passed after Phase 6 additions
+- [x] Demo manifest and traces reproduce identically at seed 2026
+- [x] Backup MP4 validated at 240 seconds; 14-slide presentation and D1-D5 captures rendered
 
 ## Session Notes
 
@@ -133,3 +149,9 @@ session and on every meaningful change. The authoritative plan lives in
   one command. Bandit post-drift recovery averaged 1.5 episodes vs. 2.5 for
   StaticMapping; the environment required no adjustment. SFR uses all completed
   tasks as its denominator. Next: Phase 6.
+- 2026-10-18: Phase 6 complete - Streamlit replay dashboard, fixed-seed D1-D5
+  scenarios, bundled result snapshots, report, 14-slide browser presentation,
+  phase captures, and four-minute silent backup walkthrough. Full suite: 68
+  passed. Optional live-LLM sanity check not run. The combined full E1-E5
+  reproduction wrapper was started but interrupted during ablations; Phase 5's
+  existing `experiments.run_all` acceptance run remains the verified baseline.

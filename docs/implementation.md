@@ -247,19 +247,19 @@ class Policy(Protocol):
 **Goal:** Package the project for presentation.
 
 **Tasks**
-- [ ] **P6-T1** Build the Streamlit app in `dashboard/app.py` with: a **trace viewer** (signal → signature → action → verifier result per step), a **ledger heatmap** (signature × action, colored by success rate), a **policy comparison** view (side-by-side runs on the same fault schedule), and a **drift toggle**.
-- [ ] **P6-T2** Make the dashboard **replay recorded seeded runs** (loaded from `results/`) so demos are deterministic. Include a "run N episodes" mode that animates ledger filling from a cold start.
-- [ ] **P6-T3** Prepare the scripted demo runs (fixed seed): (D1) setup screen; (D2) refund task with a `policy_lookup` partial-response fault where Retry-Only fails and the bandit uses `refresh`; (D3) ledger heatmap learning over about 50 episodes (shipping → `substitute`, customer → `retry`); (D4) drift toggle on `order_lookup`; (D5) silent failure on `calculator` caught by the verifier.
-- [ ] **P6-T4** Write the report (`report/`) with a clear split: **from the paper** (loop architecture, failure classes, metrics, evaluation style) vs **new** (ledger, bandit selector, drift environment, per-tool fault profiles). Include limitations: simulated tools, oracle verifier, synthetic tasks, no real APIs.
-- [ ] **P6-T5** Create the slide deck (about 12–14 slides): problem, base paper and its limitation, our idea, architecture (new parts highlighted), bandit design, why simulate, setup, E1 results, learning curve, drift, ablations, limitations, conclusion and future work.
+- [x] **P6-T1** Build the Streamlit app in `dashboard/app.py` with: a **trace viewer** (signal → signature → action → verifier result per step), a **ledger heatmap** (signature × action, colored by success rate), a **policy comparison** view (side-by-side runs on the same fault schedule), and a **drift toggle**.
+- [x] **P6-T2** Make the dashboard **replay recorded seeded runs** (loaded from `results/`) so demos are deterministic. Include a "run N episodes" mode that animates ledger filling from a cold start.
+- [x] **P6-T3** Prepare the scripted demo runs (fixed seed): (D1) setup screen; (D2) refund task with a `policy_lookup` partial-response fault where Retry-Only fails and the bandit uses `refresh`; (D3) ledger heatmap learning over about 50 episodes (shipping → `substitute`, customer → `retry`); (D4) drift toggle on `order_lookup`; (D5) silent failure on `calculator` caught by the verifier.
+- [x] **P6-T4** Write the report (`report/`) with a clear split: **from the paper** (loop architecture, failure classes, metrics, evaluation style) vs **new** (ledger, bandit selector, drift environment, per-tool fault profiles). Include limitations: simulated tools, oracle verifier, synthetic tasks, no real APIs.
+- [x] **P6-T5** Create the slide deck (about 12–14 slides): problem, base paper and its limitation, our idea, architecture (new parts highlighted), bandit design, why simulate, setup, E1 results, learning curve, drift, ablations, limitations, conclusion and future work.
 - [ ] **P6-T6** *(Optional)* A 20–30 task live-LLM sanity check with Ollama or an API, run through the same orchestrator; clearly labeled as a sanity check, not a main result.
-- [ ] **P6-T7** Finalize the `README.md` with setup, a one-command reproduction of all figures, the repo layout, and the paper citation. Tag the repo (`v1.0`).
-- [ ] **P6-T8** Record a backup demo video (about 4 minutes) and export static screenshots of each demo phase.
+- [x] **P6-T7** Finalize the `README.md` with setup, a one-command reproduction of all figures, the repo layout, and the paper citation. Tag the repo (`v1.0`).
+- [x] **P6-T8** Record a backup demo video (about 4 minutes) and export static screenshots of each demo phase.
 
 **Acceptance checks**
-- [ ] The dashboard runs with `streamlit run dashboard/app.py` and shows all four views using recorded results.
-- [ ] A person who did not write the code can follow the README to reproduce the figures and launch the dashboard.
-- [ ] The report and slides clearly credit the paper for the loop architecture and do not present the paper's numbers as ours.
+- [x] The dashboard runs with `streamlit run dashboard/app.py` and shows all four views using recorded results.
+- [x] A person who did not write the code can follow the README to reproduce the figures and launch the dashboard.
+- [x] The report and slides clearly credit the paper for the loop architecture and do not present the paper's numbers as ours.
 
 ---
 
@@ -275,7 +275,7 @@ Update this table as phases finish.
 | 3 Control plane and baselines | ✅ | loop + baselines; Static (0.99) > Retry (0.67) at intensity 0.2; 46 tests passing |
 | 4 Ledger and bandit | ✅ | seeded bandits, SQLite ledger, toy convergence/mask/discount coverage; full suite 67 passed |
 | 5 Experiments | ✅ | E1-E5 regenerated with ten paired seeds; CIs, drift checkpoint, and heatmap export complete |
-| 6 Dashboard, report, demo | ☐ | |
+| 6 Dashboard, report, demo | ✅ | four-view replay app, seeded D1-D5 demo, report, 14-slide presentation, screenshots and backup video; 68 tests passing |
 
 ## Appendix B: Reference
 

@@ -25,9 +25,9 @@ fixed mapping.
 
 ## Status
 
-Phases 0-5 are complete. Phase 6 contains the dashboard, report, and demo work.
-See `docs/implementation.md` for the full plan and `progress.md` for current
-progress.
+Phases 0-6 are complete. The project includes the deterministic dashboard,
+report, 14-slide presentation, and seeded demo assets. See
+`docs/implementation.md` for the plan and `progress.md` for the phase record.
 
 ## Setup
 
@@ -43,15 +43,36 @@ pip install -r requirements.txt
 python -m pytest -q
 ```
 
-## Reproduce Phase 5 Results
+## Reproduce Results and Demo Data
 
 ```bash
-python -m experiments.run_all --config configs/phase5.yaml
+python -m experiments.reproduce --config configs/phase5.yaml
+streamlit run dashboard/app.py
 ```
 
-This regenerates the E1-E5 CSV tables, confidence intervals, paired comparisons,
-learning and drift figures, recovery-time summary, and learned-policy heatmap
-under `results/`. The configuration fixes the same ten seeds across policies.
+The first command regenerates the E1-E5 tables, confidence intervals, paired
+comparisons, learning and drift figures, recovery-time summary, learned-policy
+heatmap, and fixed-seed dashboard traces. Phase 5 outputs go under `results/`;
+the compact dashboard data snapshot is also refreshed under `dashboard/data/`.
+The configuration fixes the same ten seeds across policies. The second command
+launches four views: trace replay, ledger heatmap and cold-start replay, policy
+comparison, and an order-lookup drift toggle. Traces can be regenerated with
+`python -m dashboard.prepare_demo` alone.
+
+## Report and Demo
+
+- Project report: [`report/report.md`](report/report.md)
+- 14-slide presentation: [`report/slides.html`](report/slides.html)
+- Scripted trace scenarios and replay data: `dashboard/data/`
+- D1-D5 phase captures and silent four-minute walkthrough: `report/demo/`
+
+The slide deck is a self-contained browser presentation. Use the arrow keys to
+advance, or the Print control to export it from a browser.
+
+The demo uses seed `2026`. The bandit refund scenario starts with explicit
+prior ledger observations, then records its `refresh` choice. The 50-episode
+learning sequence and each trace are reproducible. This is a synthetic
+simulation: the verifier is an oracle and no external APIs or live LLM are used.
 
 ## Repository layout
 
@@ -72,7 +93,8 @@ healagent/
 │   ├── ledger/              # SQLite ledger + arm statistics
 │   └── metrics/             # TSR, RSR, SFR, cost, latency, regret
 ├── experiments/             # experiment runner and E1-E5 reproduction
-├── dashboard/               # Streamlit app
+├── dashboard/               # Streamlit app, seeded demo builder and snapshots
+├── report/                  # report, presentation and demo media
 ├── results/                 # generated CSVs, figures, tables (git-ignored)
 └── tests/
 ```
