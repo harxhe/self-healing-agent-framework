@@ -41,6 +41,8 @@ class FaultInjector:
         intensity: float = 0.0,
         profiles: Mapping[tuple[str, FaultKind], FaultProfile] | None = None,
         forced_faults: Mapping[tuple[str, int], FaultKind] | None = None,
+        allowed_faults: set[FaultKind] | None = None,
+        fault_tools: set[str] | None = None,
     ) -> None:
         self.trial_seed = int(trial_seed)
         self.intensity = validate_intensity(intensity)
@@ -49,6 +51,8 @@ class FaultInjector:
             dict(profiles) if profiles is not None else default_profiles()
         )
         self.forced_faults: dict[tuple[str, int], FaultKind] = dict(forced_faults or {})
+        self.allowed_faults = None if allowed_faults is None else set(allowed_faults)
+        self.fault_tools = None if fault_tools is None else set(fault_tools)
 
     def _decision(self, task_id, step, eligible_faults, recovery_attempt):
         forced = self.forced_faults.get((task_id, step))
@@ -74,6 +78,13 @@ class FaultInjector:
         recovery_attempt: int = 0,
     ) -> ToolResult:
         base = tool.call(args)
+        if self.fault_tools is not None and tool.name not in self.fault_tools:
+            return base
+        if self.allowed_faults is not None:
+            eligible_faults = [
+                name for name in eligible_faults
+                if any(kind.value == name for kind in self.allowed_faults)
+            ]
         decision = self._decision(task_id, step, eligible_faults, recovery_attempt)
         if not decision.fires or decision.fault is None:
             return base

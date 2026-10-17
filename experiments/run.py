@@ -31,6 +31,8 @@ from healagent.faults.drift import (
     log_drift_event,
 )
 from healagent.faults.injector import FaultInjector
+from healagent.faults.types import FaultKind
+from healagent.metrics import task_metrics
 from healagent.tasks.catalog import load_tasks
 
 RESULTS_DIR = Path("results")
@@ -82,13 +84,20 @@ def run(
     budget.setdefault("depth", config.get("budget", {}).get("depth", 3))
     drift_event = drift_event_from_config(config.get("drift"))
     names = policy_names(config)
+    write_traces = bool(config.get("write_traces", True))
 
     _snapshot_config(config, output_dir)
 
     rows: list[dict[str, Any]] = []
     for name in names:
-        policy = build_policy(name, config)
         for seed in seeds:
+            seeded_config = dict(config)
+            seeded_config["seed"] = int(seed)
+            if "ledger_path" in config:
+                seeded_config["ledger_path"] = str(config["ledger_path"]).format(
+                    seed=seed, policy=name
+                )
+            policy = build_policy(name, seeded_config)
             for episode in range(episodes):
                 row = _run_one(
                     policy=policy,
@@ -103,6 +112,10 @@ def run(
                     drift_event=drift_event,
                     drift_episode=int(config.get("drift", {}).get("episode", -1)),
                     trace_dir=trace_dir,
+                    write_traces=write_traces,
+                    verifier_enabled=bool(config.get("verifier_enabled", True)),
+                    allowed_faults=config.get("allowed_faults"),
+                    fault_tools=config.get("fault_tools"),
                 )
                 rows.append(row)
     return rows
@@ -122,6 +135,10 @@ def _run_one(
     drift_event: DriftEvent | None,
     drift_episode: int,
     trace_dir: Path,
+    write_traces: bool,
+    verifier_enabled: bool,
+    allowed_faults: Sequence[str] | None,
+    fault_tools: Sequence[str] | None,
 ) -> dict[str, Any]:
     profiles = initial_profiles()
     drifted = drift_event is not None and episode >= drift_episode
@@ -129,29 +146,48 @@ def _run_one(
         profiles = apply_drift(profiles, drift_event)
 
     trial_seed = seed * 1000 + episode
-    injector = FaultInjector(trial_seed, intensity, profiles=profiles)
+    injector = FaultInjector(
+        trial_seed,
+        intensity,
+        profiles=profiles,
+        allowed_faults=None if allowed_faults is None else {FaultKind(item) for item in allowed_faults},
+        fault_tools=None if fault_tools is None else set(fault_tools),
+    )
     run_id = f"{name}-s{seed}-e{episode}-i{intensity:g}"
-    logger = TraceLogger(run_id, trace_dir=trace_dir)
+    logger = TraceLogger(run_id, trace_dir=trace_dir) if write_traces else None
 
-    if drifted and drift_event is not None:
+    if logger is not None and drifted and drift_event is not None:
         log_drift_event(logger, run_id, drift_event, seed=seed, episode=episode, method=name)
 
     n_tasks = len(tasks)
     correct = detected = recovered = silent = 0
     total_cost = 0.0
     total_latency = 0.0
+    regret = 0.0
     for task in tasks:
         result = run_episode(
             task, policy, injector, logger=logger, run_id=run_id, seed=seed,
             episode=episode, lam=lam, mu=mu, budget_config=budget,
+            verifier_enabled=verifier_enabled,
         )
         correct += int(result.answer_correct)
         detected += result.detected_failures
         recovered += result.recovered_failures
         silent += result.silent_failures
+        regret += result.cumulative_regret
         total_cost += result.cost
         total_latency += result.latency_ms
 
+    measures = task_metrics(
+        correct=correct,
+        total=n_tasks,
+        detected=detected,
+        recovered=recovered,
+        silent=silent,
+        total_cost=total_cost,
+        total_latency_ms=total_latency,
+        cumulative_regret=regret,
+    )
     return {
         "run_id": run_id,
         "policy": name,
@@ -160,11 +196,8 @@ def _run_one(
         "intensity": intensity,
         "drifted": drifted,
         "n_tasks": n_tasks,
-        "tsr": correct / n_tasks if n_tasks else 0.0,
-        "rsr": recovered / detected if detected else 1.0,
-        "sfr": silent / correct if correct else 0.0,
-        "mean_cost": total_cost / n_tasks if n_tasks else 0.0,
-        "mean_latency_ms": total_latency / n_tasks if n_tasks else 0.0,
+        **measures,
+        "verifier_enabled": verifier_enabled,
     }
 
 
