@@ -1,0 +1,4 @@
+policy,seeds,regained_count,regained_fraction,mean_recovery_episodes,recovery_ci_low,recovery_ci_high
+retry_only,10,10,1.0,7.8,3.7843612845766534,11.815638715423347
+static,10,10,1.0,2.5,-0.9099512924559106,5.9099512924559106
+bandit,10,10,1.0,1.5,0.18310411953678285,2.816895880463217

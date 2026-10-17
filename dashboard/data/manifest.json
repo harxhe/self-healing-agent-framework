@@ -1,0 +1,1017 @@
+{
+  "seed": 2026,
+  "scenarios": {
+    "D2_retry_only": {
+      "run_id": "demo-retry-only-s2026-e0",
+      "task_id": "T021",
+      "policy": "demo-retry-only",
+      "episode": 0,
+      "task_success": false,
+      "actions": [
+        "retry",
+        "retry",
+        "retry",
+        "degrade"
+      ],
+      "detected": 1,
+      "recovered": 0,
+      "silent": 0,
+      "cost": 8.5,
+      "drifted": false
+    },
+    "D2_bandit": {
+      "run_id": "demo-bandit-s2026-e0",
+      "task_id": "T021",
+      "policy": "demo-bandit",
+      "episode": 0,
+      "task_success": true,
+      "actions": [
+        "refresh"
+      ],
+      "detected": 1,
+      "recovered": 1,
+      "silent": 0,
+      "cost": 7.2,
+      "drifted": false
+    },
+    "D3_learning": [
+      {
+        "run_id": "demo-learning-s2026-e0",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 0,
+        "task_success": false,
+        "actions": [
+          "replan",
+          "retry",
+          "retry",
+          "degrade"
+        ],
+        "detected": 1,
+        "recovered": 0,
+        "silent": 0,
+        "cost": 8.5,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e1",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 1,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e2",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 2,
+        "task_success": false,
+        "actions": [
+          "retry",
+          "repair",
+          "repair",
+          "degrade"
+        ],
+        "detected": 1,
+        "recovered": 0,
+        "silent": 0,
+        "cost": 6.5,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e3",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 3,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e4",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 4,
+        "task_success": true,
+        "actions": [
+          "repair",
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 7.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e5",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 5,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e6",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 6,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e7",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 7,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e8",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 8,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e9",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 9,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e10",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 10,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e11",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 11,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e12",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 12,
+        "task_success": true,
+        "actions": [
+          "replan",
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 9.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e13",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 13,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e14",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 14,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e15",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 15,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e16",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 16,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e17",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 17,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e18",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 18,
+        "task_success": true,
+        "actions": [
+          "replan",
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 9.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e19",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 19,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e20",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 20,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e21",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 21,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e22",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 22,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e23",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 23,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e24",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 24,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e25",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 25,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e26",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 26,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e27",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 27,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e28",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 28,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e29",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 29,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e30",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 30,
+        "task_success": true,
+        "actions": [
+          "repair",
+          "replan",
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 10.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e31",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 31,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e32",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 32,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e33",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 33,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e34",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 34,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e35",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 35,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e36",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 36,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e37",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 37,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e38",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 38,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e39",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 39,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e40",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 40,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e41",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 41,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e42",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 42,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e43",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 43,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e44",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 44,
+        "task_success": true,
+        "actions": [
+          "refresh",
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 7.2,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e45",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 45,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e46",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 46,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e47",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 47,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      },
+      {
+        "run_id": "demo-learning-s2026-e48",
+        "task_id": "T041",
+        "policy": "demo-learning",
+        "episode": 48,
+        "task_success": true,
+        "actions": [
+          "substitute"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 6.0,
+        "drifted": false,
+        "target_tool": "shipping_estimator"
+      },
+      {
+        "run_id": "demo-learning-s2026-e49",
+        "task_id": "T061",
+        "policy": "demo-learning",
+        "episode": 49,
+        "task_success": true,
+        "actions": [
+          "retry"
+        ],
+        "detected": 1,
+        "recovered": 1,
+        "silent": 0,
+        "cost": 11.0,
+        "drifted": false,
+        "target_tool": "customer_lookup"
+      }
+    ],
+    "D4_before": {
+      "run_id": "demo-drift-before-s2026-e0",
+      "task_id": "T001",
+      "policy": "demo-drift-before",
+      "episode": 0,
+      "task_success": true,
+      "actions": [
+        "retry"
+      ],
+      "detected": 1,
+      "recovered": 1,
+      "silent": 0,
+      "cost": 3.0,
+      "drifted": false
+    },
+    "D4_after": {
+      "run_id": "demo-drift-after-s2026-e0",
+      "task_id": "T001",
+      "policy": "demo-drift-after",
+      "episode": 0,
+      "task_success": true,
+      "actions": [
+        "retry",
+        "substitute"
+      ],
+      "detected": 1,
+      "recovered": 1,
+      "silent": 0,
+      "cost": 5.0,
+      "drifted": true
+    },
+    "D5_verifier": {
+      "run_id": "demo-verifier-s2026-e0",
+      "task_id": "T021",
+      "policy": "demo-verifier",
+      "episode": 0,
+      "task_success": true,
+      "actions": [
+        "repair"
+      ],
+      "detected": 1,
+      "recovered": 1,
+      "silent": 0,
+      "cost": 8.0,
+      "drifted": false
+    }
+  },
+  "ledger": {
+    "timeout|customer_lookup|1": {
+      "retry": {
+        "n": 25,
+        "successes": 25,
+        "mean_reward": 0.9497599999999999,
+        "success_rate": 1.0,
+        "count": 25,
+        "recent_reward": 0.9497599999999999
+      }
+    },
+    "timeout|shipping_estimator|1": {
+      "replan": {
+        "n": 3,
+        "successes": 0,
+        "mean_reward": -0.15054000000000003,
+        "success_rate": 0.0,
+        "count": 3,
+        "recent_reward": -0.15054000000000003
+      },
+      "retry": {
+        "n": 1,
+        "successes": 0,
+        "mean_reward": -0.05036,
+        "success_rate": 0.0,
+        "count": 1,
+        "recent_reward": -0.05036
+      },
+      "repair": {
+        "n": 2,
+        "successes": 0,
+        "mean_reward": -0.05027,
+        "success_rate": 0.0,
+        "count": 2,
+        "recent_reward": -0.05027
+      },
+      "substitute": {
+        "n": 18,
+        "successes": 18,
+        "mean_reward": 0.8997120000000002,
+        "success_rate": 1.0,
+        "count": 18,
+        "recent_reward": 0.8997120000000002
+      },
+      "refresh": {
+        "n": 1,
+        "successes": 0,
+        "mean_reward": -0.060197999999999995,
+        "success_rate": 0.0,
+        "count": 1,
+        "recent_reward": -0.060197999999999995
+      }
+    },
+    "timeout|shipping_estimator|2": {
+      "retry": {
+        "n": 1,
+        "successes": 0,
+        "mean_reward": -0.05072,
+        "success_rate": 0.0,
+        "count": 1,
+        "recent_reward": -0.05072
+      },
+      "repair": {
+        "n": 1,
+        "successes": 0,
+        "mean_reward": -0.05027,
+        "success_rate": 0.0,
+        "count": 1,
+        "recent_reward": -0.05027
+      },
+      "substitute": {
+        "n": 4,
+        "successes": 4,
+        "mean_reward": 0.8997120000000001,
+        "success_rate": 1.0,
+        "count": 4,
+        "recent_reward": 0.8997120000000001
+      },
+      "replan": {
+        "n": 1,
+        "successes": 0,
+        "mean_reward": -0.15054000000000003,
+        "success_rate": 0.0,
+        "count": 1,
+        "recent_reward": -0.15054000000000003
+      }
+    },
+    "timeout|shipping_estimator|3": {
+      "retry": {
+        "n": 1,
+        "successes": 0,
+        "mean_reward": -0.05144,
+        "success_rate": 0.0,
+        "count": 1,
+        "recent_reward": -0.05144
+      },
+      "repair": {
+        "n": 1,
+        "successes": 0,
+        "mean_reward": -0.05027,
+        "success_rate": 0.0,
+        "count": 1,
+        "recent_reward": -0.05027
+      },
+      "substitute": {
+        "n": 1,
+        "successes": 1,
+        "mean_reward": 0.8997120000000001,
+        "success_rate": 1.0,
+        "count": 1,
+        "recent_reward": 0.8997120000000001
+      }
+    }
+  },
+  "notes": {
+    "D2": "The bandit is initialized from prior outcomes for this signature; its chosen action is then recorded in the trace.",
+    "D3": "A fixed schedule alternates the persistent shipping timeout and transient customer timeout profiles.",
+    "D5": "The oracle verifier compares tool output with the known task answer in simulation."
+  }
+}
