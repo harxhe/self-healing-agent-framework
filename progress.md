@@ -6,9 +6,9 @@ session and on every meaningful change. The authoritative plan lives in
 
 ## Current Status
 
-- **Active phase:** Phase 4 - Ledger and bandit policies
-- **Last completed phase:** Phase 3 - Control plane and baselines
-- **Next unchecked task:** P4-T1 - implement `ledger/ledger.py`
+- **Active phase:** Phase 5 - Experiments
+- **Last completed phase:** Phase 4 - Ledger and bandit policies
+- **Next unchecked task:** P5-T1 - implement `metrics/`
 
 ## Phase Tracker
 
@@ -18,8 +18,8 @@ session and on every meaningful change. The authoritative plan lives in
 | 1 Environment | complete | 100 deterministic no-fault tasks; 22 tests passing |
 | 2 Fault injector | complete | deterministic profiles, schedule, drift; 39 tests passing |
 | 3 Control plane and baselines | complete | loop + baselines; 46 tests passing |
-| 4 Ledger and bandit | in progress | next up |
-| 5 Experiments | not started | |
+| 4 Ledger and bandit | complete | seeded algorithms; SQLite ledger; toy, mask, discount, persistence checks |
+| 5 Experiments | in progress | next up |
 | 6 Dashboard, report, demo | not started | |
 
 ## Phase 0 Task Log
@@ -65,6 +65,28 @@ session and on every meaningful change. The authoritative plan lives in
 - [x] P3-T9 `experiments/run.py` runner writing traces + summary CSV + config snapshot
 - Additive: `faults/injector.py` gained optional `forced_faults` for scripted tests/demos
 
+## Phase 4 Task Log
+
+- [x] P4-T1 `ledger/ledger.py` - SQLite records, per-signature/action stats, reopen, reset
+- [x] P4-T2 `ledger/arms.py` - recency-weighted discounting and sliding window
+- [x] P4-T3 `policy/reward.py` - configurable cost and latency reward
+- [x] P4-T4-T5 `policy/bandit.py` - seeded epsilon-greedy, UCB1, and Thompson sampling
+- [x] P4-T6 warm static-map priors and cold uniform priors
+- [x] P4-T7 config-driven bandit selection, masks, reward options, and runner integration
+- [x] P4-T8 seeded toy environment and learning tests
+
+## Phase 5 Task Log
+
+- [ ] P5-T1 `healagent/metrics/` - task metrics, t-based 95% CIs, paired differences
+- [ ] P5-T2 E1 main policy comparison at intensities 0.0-0.5
+- [ ] P5-T3 E2 cold/warm learning curves for TSR and regret
+- [ ] P5-T4 E3 drift curves and recovery-time analysis
+- [ ] P5-T5 E4 algorithm/start/cost/mask/discount ablations
+- [ ] P5-T6 E5 semantic-fault verifier on/off comparison
+- [ ] P5-T7 `results/learned_policy_heatmap.csv` exported from final SQLite ledgers
+- [ ] P5-T8 `python -m experiments.run_all --config configs/phase5.yaml` regenerates artifacts
+- [ ] Checkpoint: compare bandit against StaticMapping after E1/E3
+
 ## Acceptance Checks
 
 - [x] `pytest tests/test_seed.py` - determinism of named RNG streams
@@ -79,6 +101,9 @@ session and on every meaningful change. The authoritative plan lives in
 - [x] intensity 0.0 -> 100% TSR for both baselines
 - [x] intensity 0.2-0.3 -> StaticMapping TSR > RetryOnly TSR (0.99 vs 0.67 at 0.2), traces for both
 - [x] budget exhaustion degrades/escalates with no infinite loops
+- [x] `pytest tests/test_bandit_toy.py`, `tests/test_mask.py`, `tests/test_discount.py` - seeded algorithms learn; mask and drift-discount behavior hold
+- [x] Ledger reopen/reset persistence check
+- [x] `python -m pytest -q` - 67 tests passed
 
 ## Session Notes
 
@@ -99,3 +124,6 @@ session and on every meaningful change. The authoritative plan lives in
   Static > Retry at intensity 0.2/0.3 (0.99 vs 0.67). Verifier is an oracle;
   it is deliberately strong and documented as such. `policy/reward.py` landed
   early (needed by the loop; formally P4-T3). Next: Phase 4 ledger + bandits.
+- 2026-10-18: Phase 4 complete - persistent ledger, recency-weighted arm stats,
+  seeded epsilon-greedy/UCB1/Thompson policies, warm/cold starts, and toy
+  acceptance tests. Full suite: 67 passed.

@@ -198,23 +198,23 @@ class Policy(Protocol):
 **Goal:** A Recovery Ledger and bandit selector that learns the best recovery action per failure signature.
 
 **Tasks**
-- [ ] **P4-T1** Implement `ledger/ledger.py` on SQLite. Table `records(id, run_id, episode, failure_class, tool, attempt, action, success, cost, latency, reward, timestamp)`. Methods: `log(...)`, `stats(signature) -> per-action {n, successes, mean_reward}`, `reset()`.
-- [ ] **P4-T2** Implement arm statistics in `ledger/arms.py`, supporting **discounting** (`gamma`) and an optional **sliding window** so old evidence fades under drift.
-- [ ] **P4-T3** Implement the reward function in `policy/reward.py`: `r = success − λ·cost − μ·latency`, parameters from config.
-- [ ] **P4-T4** Implement `policy/bandit_base.py`: a base class that keeps one bandit per signature (tabular context), respects the feasibility `mask`, and logs every update to the ledger.
-- [ ] **P4-T5** Implement three selection algorithms:
+- [x] **P4-T1** Implement `ledger/ledger.py` on SQLite. Table `records(id, run_id, episode, failure_class, tool, attempt, action, success, cost, latency, reward, timestamp)`. Methods: `log(...)`, `stats(signature) -> per-action {n, successes, mean_reward}`, `reset()`.
+- [x] **P4-T2** Implement arm statistics in `ledger/arms.py`, supporting **discounting** (`gamma`) and an optional **sliding window** so old evidence fades under drift.
+- [x] **P4-T3** Implement the reward function in `policy/reward.py`: `r = success − λ·cost − μ·latency`, parameters from config.
+- [x] **P4-T4** Implement the tabular bandit base in `policy/bandit.py`: one ledger-backed bandit per signature, feasibility-mask handling, and logged updates.
+- [x] **P4-T5** Implement three selection algorithms:
   - `EpsilonGreedy` (with decaying ε)
   - `UCB1`
   - `ThompsonSampling` (Beta posteriors on success; handle reward vs. success consistently and document the choice)
-- [ ] **P4-T6** Implement **warm start**: optional prior initialization from the `StaticMapping` table (pseudo-counts for the static action), and a **cold start** mode with uniform priors.
-- [ ] **P4-T7** Wire `BanditPolicy` (configurable algorithm, warm/cold, discount, mask on/off, cost term on/off) into `policy/` and the runner.
-- [ ] **P4-T8** Build a **toy environment** in `tests/toy_env.py` with known best actions per signature, to verify learning independently of the full simulator.
+- [x] **P4-T6** Implement **warm start**: optional prior initialization from the `StaticMapping` table (pseudo-counts for the static action), and a **cold start** mode with uniform priors.
+- [x] **P4-T7** Wire the configurable bandit factory (algorithm, warm/cold, discount, mask on/off, cost term on/off) into `policy/` and the runner.
+- [x] **P4-T8** Build a **toy environment** in `tests/toy_env.py` with known best actions per signature, to verify learning independently of the full simulator.
 
 **Acceptance checks**
-- [ ] `pytest tests/test_bandit_toy.py`: each algorithm converges to the known best action for every toy signature within a fixed number of episodes (use several seeds).
-- [ ] `pytest tests/test_mask.py`: the bandit never selects an action outside the mask.
-- [ ] `pytest tests/test_discount.py`: after the toy environment's best action flips mid-run, the discounted bandit switches while the non-discounted one lags.
-- [ ] Ledger persists across runs (re-opening the SQLite file retains statistics) and `reset()` clears it.
+- [x] `pytest tests/test_bandit_toy.py`: each algorithm converges to the known best action within 900 episodes across three seeds.
+- [x] `pytest tests/test_mask.py`: the bandit never selects an action outside the mask; an empty mask terminates safely.
+- [x] `pytest tests/test_discount.py`: after the toy environment's best action flips mid-run, the discounted bandit switches while the non-discounted one lags.
+- [x] Ledger persists across runs (re-opening the SQLite file retains statistics) and `reset()` clears it.
 
 ---
 
@@ -223,14 +223,14 @@ class Policy(Protocol):
 **Goal:** Produce the evidence for every claim. Use **10–20 seeds**, report **mean with 95% confidence intervals**, and compare **paired** on identical fault schedules.
 
 **Tasks**
-- [ ] **P5-T1** Implement `metrics/`: TSR, RSR, SFR, cost proxy, mean latency, cumulative regret (relative to the best fixed action per signature, computed from profile ground truth), confidence intervals (bootstrap or t-based), and paired differences.
+- [ ] **P5-T1** Implement `metrics/`: TSR, RSR, SFR, cost proxy, mean latency, cumulative regret relative to the profile-ground-truth best feasible action, t-based confidence intervals, and paired differences.
 - [ ] **P5-T2** **E1 Main comparison:** `RetryOnly` vs `StaticMapping` vs `BanditPolicy` at intensities 0.0–0.5. Output `results/e1_main.csv` and a table of TSR, RSR, SFR, cost, latency.
 - [ ] **P5-T3** **E2 Learning curve:** TSR and cumulative regret over episodes for the bandit (cold and warm) vs the baselines. Output a figure with confidence bands.
 - [ ] **P5-T4** **E3 Drift:** run with the drift event (Phase 2). Plot success over episodes with a vertical line at the drift episode for all three policies. Report recovery time after drift (episodes to regain pre-drift success).
 - [ ] **P5-T5** **E4 Ablations:** UCB1 vs Thompson vs ε-greedy; cold vs warm start; cost term on/off; feasibility mask on/off; discounting on/off. Output a table.
 - [ ] **P5-T6** **E5 Silent failures:** semantic-fault intensity `λs ∈ {0.0, 0.1, 0.2, 0.3}`; compare SFR and TSR with verifier on vs off, for each policy.
-- [ ] **P5-T7** Create a learned-policy heatmap data export: per-signature best action and success rate from the final ledger (used by the dashboard and report).
-- [ ] **P5-T8** Add `make results` (or `python experiments/run_all.py`) that regenerates **every** CSV, figure, and table from configs.
+- [ ] **P5-T7** Create a learned-policy heatmap data export: per-signature best action and success rate from the final SQLite ledger.
+- [ ] **P5-T8** Add `python -m experiments.run_all --config configs/phase5.yaml` to regenerate the CSVs, figures, and tables.
 
 **Checkpoint (must do before continuing)**
 - [ ] After E1 and E3, check whether the bandit beats `StaticMapping` (TSR, or cost at equal TSR, or post-drift recovery). **If it does not,** adjust the *environment* (more varied per-tool behaviors in `faults/profiles.py`, stronger cost differences between actions), rerun, and document the change. Do **not** tune the bandit to hide a flat environment.
@@ -273,7 +273,7 @@ Update this table as phases finish.
 | 1 Environment | ✅ | 100 deterministic no-fault tasks; 22 tests passing |
 | 2 Fault injector | ✅ | deterministic profiles, schedule, drift; 39 tests passing |
 | 3 Control plane and baselines | ✅ | loop + baselines; Static (0.99) > Retry (0.67) at intensity 0.2; 46 tests passing |
-| 4 Ledger and bandit | ☐ | |
+| 4 Ledger and bandit | ✅ | seeded bandits, SQLite ledger, toy convergence/mask/discount coverage; full suite 67 passed |
 | 5 Experiments | ☐ | |
 | 6 Dashboard, report, demo | ☐ | |
 
