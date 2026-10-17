@@ -223,22 +223,22 @@ class Policy(Protocol):
 **Goal:** Produce the evidence for every claim. Use **10–20 seeds**, report **mean with 95% confidence intervals**, and compare **paired** on identical fault schedules.
 
 **Tasks**
-- [ ] **P5-T1** Implement `metrics/`: TSR, RSR, SFR, cost proxy, mean latency, cumulative regret relative to the profile-ground-truth best feasible action, t-based confidence intervals, and paired differences.
-- [ ] **P5-T2** **E1 Main comparison:** `RetryOnly` vs `StaticMapping` vs `BanditPolicy` at intensities 0.0–0.5. Output `results/e1_main.csv` and a table of TSR, RSR, SFR, cost, latency.
-- [ ] **P5-T3** **E2 Learning curve:** TSR and cumulative regret over episodes for the bandit (cold and warm) vs the baselines. Output a figure with confidence bands.
-- [ ] **P5-T4** **E3 Drift:** run with the drift event (Phase 2). Plot success over episodes with a vertical line at the drift episode for all three policies. Report recovery time after drift (episodes to regain pre-drift success).
-- [ ] **P5-T5** **E4 Ablations:** UCB1 vs Thompson vs ε-greedy; cold vs warm start; cost term on/off; feasibility mask on/off; discounting on/off. Output a table.
-- [ ] **P5-T6** **E5 Silent failures:** semantic-fault intensity `λs ∈ {0.0, 0.1, 0.2, 0.3}`; compare SFR and TSR with verifier on vs off, for each policy.
-- [ ] **P5-T7** Create a learned-policy heatmap data export: per-signature best action and success rate from the final SQLite ledger.
-- [ ] **P5-T8** Add `python -m experiments.run_all --config configs/phase5.yaml` to regenerate the CSVs, figures, and tables.
+- [x] **P5-T1** Implement `metrics/`: TSR, RSR, SFR, cost proxy, mean latency, cumulative regret relative to the profile-ground-truth best feasible action, t-based confidence intervals, and paired differences.
+- [x] **P5-T2** **E1 Main comparison:** `RetryOnly` vs `StaticMapping` vs `BanditPolicy` at intensities 0.0–0.5. Output `results/e1_main.csv` and a table of TSR, RSR, SFR, cost, latency.
+- [x] **P5-T3** **E2 Learning curve:** TSR and cumulative regret over episodes for the bandit (cold and warm) vs the baselines. Output a figure with confidence bands.
+- [x] **P5-T4** **E3 Drift:** run with the drift event (Phase 2). Plot success over episodes with a vertical line at the drift episode for all three policies. Report recovery time after drift (episodes to regain pre-drift success).
+- [x] **P5-T5** **E4 Ablations:** UCB1 vs Thompson vs ε-greedy; cold vs warm start; cost term on/off; feasibility mask on/off; discounting on/off. Output a table.
+- [x] **P5-T6** **E5 Silent failures:** semantic-fault intensity `λs ∈ {0.0, 0.1, 0.2, 0.3}`; compare SFR and TSR with verifier on vs off, for each policy.
+- [x] **P5-T7** Create a learned-policy heatmap data export: per-signature best action and success rate from the final SQLite ledger.
+- [x] **P5-T8** Add `python -m experiments.run_all --config configs/phase5.yaml` to regenerate the CSVs, figures, and tables.
 
 **Checkpoint (must do before continuing)**
-- [ ] After E1 and E3, check whether the bandit beats `StaticMapping` (TSR, or cost at equal TSR, or post-drift recovery). **If it does not,** adjust the *environment* (more varied per-tool behaviors in `faults/profiles.py`, stronger cost differences between actions), rerun, and document the change. Do **not** tune the bandit to hide a flat environment.
+- [x] After E1 and E3, check whether the bandit beats `StaticMapping` (TSR, or cost at equal TSR, or post-drift recovery). E1 did not show higher TSR or equal-TSR cost; E3 showed faster mean post-drift recovery (1.5 episodes vs. 2.5 for StaticMapping, 10 paired seeds), meeting the checkpoint. No environment change was needed.
 
 **Acceptance checks**
-- [ ] One command regenerates all results from scratch.
-- [ ] All reported numbers come with 95% CIs and use the same seeds across policies.
-- [ ] Results are saved under `results/` with config snapshots for reproducibility.
+- [x] One command regenerates all results from scratch: `python -m experiments.run_all --config configs/phase5.yaml`.
+- [x] All reported estimates include 95% CIs and comparisons use the same ten seeds across policies.
+- [x] Results are saved under `results/` with config snapshots for reproducibility.
 
 ---
 
@@ -274,7 +274,7 @@ Update this table as phases finish.
 | 2 Fault injector | ✅ | deterministic profiles, schedule, drift; 39 tests passing |
 | 3 Control plane and baselines | ✅ | loop + baselines; Static (0.99) > Retry (0.67) at intensity 0.2; 46 tests passing |
 | 4 Ledger and bandit | ✅ | seeded bandits, SQLite ledger, toy convergence/mask/discount coverage; full suite 67 passed |
-| 5 Experiments | ☐ | |
+| 5 Experiments | ✅ | E1-E5 regenerated with ten paired seeds; CIs, drift checkpoint, and heatmap export complete |
 | 6 Dashboard, report, demo | ☐ | |
 
 ## Appendix B: Reference

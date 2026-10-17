@@ -25,8 +25,9 @@ fixed mapping.
 
 ## Status
 
-This project is being built phase by phase. See `docs/implementation.md` for the
-full plan and `progress.md` for current progress.
+Phases 0-5 are complete. Phase 6 contains the dashboard, report, and demo work.
+See `docs/implementation.md` for the full plan and `progress.md` for current
+progress.
 
 ## Setup
 
@@ -39,8 +40,18 @@ pip install -r requirements.txt
 ## Tests
 
 ```bash
-pytest
+python -m pytest -q
 ```
+
+## Reproduce Phase 5 Results
+
+```bash
+python -m experiments.run_all --config configs/phase5.yaml
+```
+
+This regenerates the E1-E5 CSV tables, confidence intervals, paired comparisons,
+learning and drift figures, recovery-time summary, and learned-policy heatmap
+under `results/`. The configuration fixes the same ten seeds across policies.
 
 ## Repository layout
 
@@ -60,7 +71,7 @@ healagent/
 │   ├── policy/              # retry_only, static, bandit (eps-greedy, UCB1, Thompson)
 │   ├── ledger/              # SQLite ledger + arm statistics
 │   └── metrics/             # TSR, RSR, SFR, cost, latency, regret
-├── experiments/             # runners for E1-E5, plotting scripts
+├── experiments/             # experiment runner and E1-E5 reproduction
 ├── dashboard/               # Streamlit app
 ├── results/                 # generated CSVs, figures, tables (git-ignored)
 └── tests/
