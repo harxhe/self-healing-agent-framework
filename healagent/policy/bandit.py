@@ -1,190 +1,251 @@
-import random
+"""Seeded tabular bandit policies backed by the recovery ledger."""
+
+from __future__ import annotations
+
 import math
-from typing import List, Dict, Any, Optional, Union, Set
+from collections.abc import Mapping, Sequence
+from typing import Any
+
+from healagent.core.seed import SeedManager
+from healagent.core.types import Action, Signature
 from healagent.ledger.ledger import RecoveryLedger
+from healagent.policy.static import STATIC_TABLE
+
 
 class BaseBanditPolicy:
-    def __init__(self, ledger: RecoveryLedger, actions: List[str], warm_start_table: Optional[Dict[str, str]] = None):
+    name = "bandit"
+
+    def __init__(
+        self,
+        ledger: RecoveryLedger,
+        actions: Sequence[Action | str],
+        *,
+        seed: int = 0,
+        warm_start: bool = False,
+        use_mask: bool = True,
+        use_cost_term: bool = True,
+        prior_count: int = 2,
+    ) -> None:
         self.ledger = ledger
-        self.actions = actions
-        self.warm_start_table = warm_start_table or {}
+        self.actions = tuple(_as_action(action) for action in actions)
+        self.seed_manager = SeedManager(seed)
+        self.rng = self.seed_manager.rng("policy", self.name)
+        self.warm_start = warm_start
+        self.use_mask = use_mask
+        self.use_cost_term = use_cost_term
+        self.prior_count = prior_count
+        self.selections = 0
 
-    def _get_valid_actions(self, mask: Optional[Union[List[str], Set[str], dict]]) -> List[str]:
-        if mask is not None:
-            if isinstance(mask, dict):
-                valid = [k for k, v in mask.items() if v]
-            else:
-                valid = list(mask)
-            if valid:
-                return [a for a in valid if a in self.actions]
-        return list(self.actions)
+    def _valid_actions(self, mask: set[Action] | set[str]) -> list[Action]:
+        if not self.use_mask:
+            return list(self.actions)
+        allowed = {_as_action(item) for item in mask}
+        return [action for action in self.actions if action in allowed]
 
-    def select(self, signature: str, mask: Optional[Union[List[str], Set[str], dict]] = None) -> str:
+    def _stats(self, signature: Signature, action: Action) -> dict[str, float | int]:
+        stats = self.ledger.get_arm_stats(signature, action.value)
+        if self.warm_start and stats["count"] == 0:
+            preferred = _static_prior(signature)
+            if action == preferred:
+                count = self.prior_count
+                return {
+                    "count": count,
+                    "successes": count,
+                    "success_rate": 1.0,
+                    "mean_reward": 1.0,
+                    "recent_reward": 1.0,
+                }
+        if not self.use_cost_term and stats["count"]:
+            success_rate = float(stats["success_rate"])
+            stats["mean_reward"] = success_rate
+            stats["recent_reward"] = success_rate
+        return stats
+
+    def update(
+        self,
+        signature: Signature | str,
+        action: Action | str,
+        reward: float,
+        *legacy_cost_latency: float,
+        success: bool | None = None,
+        cost: float = 0.0,
+        latency: float = 0.0,
+        run_id: str = "",
+        episode: int = 0,
+    ) -> None:
+        if legacy_cost_latency:
+            success = bool(reward) if success is None else success
+            cost = float(legacy_cost_latency[0])
+            latency = float(legacy_cost_latency[1]) if len(legacy_cost_latency) > 1 else 0.0
+            reward = float(success) - 0.1 * cost - 0.05 * latency
+        self.update_observation(
+            signature,
+            action,
+            reward,
+            success=success,
+            cost=cost,
+            latency=latency,
+            run_id=run_id,
+            episode=episode,
+        )
+
+    def update_observation(
+        self,
+        signature: Signature | str,
+        action: Action | str,
+        reward: float,
+        *,
+        success: bool | None = None,
+        cost: float = 0.0,
+        latency: float = 0.0,
+        run_id: str = "",
+        episode: int = 0,
+    ) -> None:
+        self.ledger.log(
+            run_id=run_id,
+            episode=episode,
+            signature=signature,
+            action=_as_action(action).value,
+            success=(reward > 0.0 if success is None else success),
+            cost=cost,
+            latency=latency,
+            reward=reward,
+        )
+
+    def select(self, signature: Signature | str, mask: set[Action] | set[str] | None = None) -> Action:
         raise NotImplementedError
 
-    def update(self, signature: Any, action: str, *args, **kwargs):
-        """Flexible update supporting both orchestrator (3 args) and unit test (5 args) formats."""
-        success = True
-        cost = 0.0
-        latency = 0.0
-        reward = None
 
-        if len(args) == 1:
-            val = args[0]
-            if isinstance(val, (int, float)) and not isinstance(val, bool):
-                reward = float(val)
-                success = val > 0
-            else:
-                success = bool(val)
-        elif len(args) >= 3:
-            success = bool(args[0])
-            cost = float(args[1])
-            latency = float(args[2])
-            if len(args) >= 4:
-                reward = float(args[3])
-
-        success = kwargs.get("success", success)
-        cost = kwargs.get("cost", cost)
-        latency = kwargs.get("latency", latency)
-        reward = kwargs.get("reward", reward)
-
-        self.ledger.record(signature, action, success, cost, latency, reward)
-
-
-class EpsilonGreedyPolicy(BaseBanditPolicy):
-    def __init__(self, ledger: RecoveryLedger, actions: List[str], epsilon: float = 0.1, warm_start_table: Optional[Dict[str, str]] = None):
-        super().__init__(ledger, actions, warm_start_table)
+class EpsilonGreedy(BaseBanditPolicy):
+    def __init__(
+        self,
+        ledger: RecoveryLedger,
+        actions: Sequence[Action | str],
+        *,
+        epsilon: float = 0.1,
+        epsilon_min: float = 0.01,
+        epsilon_decay: float = 0.995,
+        **kwargs: Any,
+    ) -> None:
+        super().__init__(ledger, actions, **kwargs)
         self.epsilon = epsilon
+        self.epsilon_min = epsilon_min
+        self.epsilon_decay = epsilon_decay
 
-    def select(self, signature: str, mask: Optional[Union[List[str], Set[str], dict]] = None) -> str:
-        valid_actions = self._get_valid_actions(mask)
-        if not valid_actions:
-            valid_actions = list(self.actions)
-
-        # Exploration
-        if random.random() < self.epsilon:
-            return random.choice(valid_actions)
-
-        # Exploitation: check stats
-        best_action = valid_actions[0]
-        max_reward = float("-inf")
-
-        for action in valid_actions:
-            stats = self.ledger.get_arm_stats(signature, action)
-            score = stats["recent_reward"] if stats["count"] > 0 else 0.0
-            
-            # Fallback to warm start if no data
-            if stats["count"] == 0 and str(signature) in self.warm_start_table:
-                if self.warm_start_table[str(signature)] == action:
-                    score = 1.0
-
-            if score > max_reward:
-                max_reward = score
-                best_action = action
-
-        return best_action
+    def select(self, signature: Signature | str, mask: set[Action] | set[str] | None = None) -> Action:
+        mask = set(self.actions) if mask is None else mask
+        valid = self._valid_actions(mask)
+        self.selections += 1
+        if not valid:
+            return Action.TERMINATE
+        epsilon_now = max(self.epsilon_min, self.epsilon * self.epsilon_decay ** (self.selections - 1))
+        if self.rng.random() < epsilon_now:
+            return valid[int(self.rng.integers(len(valid)))]
+        return max(valid, key=lambda action: float(self._stats(signature, action)["recent_reward"]))
 
 
-class UCB1Policy(BaseBanditPolicy):
-    def select(self, signature: str, mask: Optional[Union[List[str], Set[str], dict]] = None) -> str:
-        valid_actions = self._get_valid_actions(mask)
-        if not valid_actions:
-            valid_actions = list(self.actions)
-
-        total_pulls = sum(self.ledger.get_arm_stats(signature, a)["count"] for a in valid_actions)
-
-        for action in valid_actions:
-            stats = self.ledger.get_arm_stats(signature, action)
-            if stats["count"] == 0:
-                if str(signature) in self.warm_start_table and self.warm_start_table[str(signature)] == action:
-                    return action
-                return action
-
-        best_action = valid_actions[0]
-        max_ucb = float("-inf")
-
-        for action in valid_actions:
-            stats = self.ledger.get_arm_stats(signature, action)
-            mean_rew = stats["recent_reward"]
-            count = stats["count"]
-            
-            bonus = math.sqrt(2.0 * math.log(max(1, total_pulls)) / count) if count > 0 else 0.0
-            ucb_score = mean_rew + bonus
-
-            if ucb_score > max_ucb:
-                max_ucb = ucb_score
-                best_action = action
-
-        return best_action
+class UCB1(BaseBanditPolicy):
+    def select(self, signature: Signature | str, mask: set[Action] | set[str] | None = None) -> Action:
+        mask = set(self.actions) if mask is None else mask
+        valid = self._valid_actions(mask)
+        if not valid:
+            return Action.TERMINATE
+        counts = {action: int(self._stats(signature, action)["count"]) for action in valid}
+        untried = [action for action in valid if counts[action] == 0]
+        if untried:
+            return untried[0]
+        total = sum(counts.values())
+        return max(
+            valid,
+            key=lambda action: float(self._stats(signature, action)["recent_reward"])
+            + math.sqrt(2.0 * math.log(max(total, 1)) / counts[action]),
+        )
 
 
-class ThompsonSamplingPolicy(BaseBanditPolicy):
-    def select(self, signature: str, mask: Optional[Union[List[str], Set[str], dict]] = None) -> str:
-        valid_actions = self._get_valid_actions(mask)
-        if not valid_actions:
-            valid_actions = list(self.actions)
+class ThompsonSampling(BaseBanditPolicy):
+    """Beta posterior over success; cost affects reward-based algorithms only."""
 
-        best_action = valid_actions[0]
-        max_sample = float("-inf")
-
-        for action in valid_actions:
-            stats = self.ledger.get_arm_stats(signature, action)
-            success_rate = stats["success_rate"]
-            count = stats["count"]
-
-            alpha = 1.0 + (success_rate * count)
-            beta_param = 1.0 + ((1.0 - success_rate) * count)
-            
-            sample = random.betavariate(max(0.1, alpha), max(0.1, beta_param))
-
-            if sample > max_sample:
-                max_sample = sample
-                best_action = action
-
-        return best_action
+    def select(self, signature: Signature | str, mask: set[Action] | set[str] | None = None) -> Action:
+        mask = set(self.actions) if mask is None else mask
+        valid = self._valid_actions(mask)
+        if not valid:
+            return Action.TERMINATE
+        samples: dict[Action, float] = {}
+        for action in valid:
+            stats = self._stats(signature, action)
+            successes = int(stats.get("successes", 0))
+            count = int(stats["count"])
+            failures = max(0, count - successes)
+            samples[action] = float(
+                self.rng.beta(1.0 + successes, 1.0 + failures)
+            )
+        return max(valid, key=samples.__getitem__)
 
 
-def build_bandit_policy(config_or_name, ledger=None, actions=None, **kwargs):
-    """Bulletproof factory function supporting dict configs, nested policy definitions, and direct calls."""
-    policy_name = "epsilon_greedy"
-    params = {}
-    
-    if isinstance(config_or_name, dict):
-        config = config_or_name
-        pol = config.get("policy", "epsilon_greedy")
-        if isinstance(pol, dict):
-            policy_name = pol.get("name", pol.get("type", "epsilon_greedy"))
-            params.update(pol)
-        elif isinstance(pol, str):
-            policy_name = pol
-            
-        if "name" in config and isinstance(config["name"], str):
-            policy_name = config["name"]
-            
-        ledger = ledger or config.get("ledger") or RecoveryLedger()
-        actions = actions or config.get("actions", ["retry", "substitute", "refresh", "escalate"])
-        params.update(config.get("params", {}))
-        params.update(kwargs)
+def build_bandit_policy(
+    config: Mapping[str, Any] | str | None = None,
+    ledger: RecoveryLedger | None = None,
+    actions: Sequence[Action | str] | None = None,
+    **overrides: Any,
+) -> BaseBanditPolicy:
+    """Build a policy from a runner config or explicit algorithm name."""
+    root = dict(config) if isinstance(config, Mapping) else {}
+    policy_config = root.get("policy", {})
+    if isinstance(policy_config, str):
+        policy_config = {"algorithm": policy_config}
     else:
-        if isinstance(config_or_name, dict):
-            pol = config_or_name
-            policy_name = pol.get("name", pol.get("type", "epsilon_greedy"))
-            params.update(pol)
-        elif config_or_name is not None:
-            policy_name = str(config_or_name)
-            
-        ledger = ledger if ledger is not None else RecoveryLedger()
-        actions = actions or ["retry", "substitute", "refresh", "escalate"]
-        params.update(kwargs)
+        policy_config = dict(policy_config)
+    if isinstance(config, str):
+        policy_config["algorithm"] = config
+    policy_config.update(overrides)
+    algorithm = str(
+        policy_config.get("algorithm", policy_config.get("name", "epsilon_greedy"))
+    ).lower()
+    discount = float(policy_config.get("discount", 1.0))
+    window = policy_config.get("window")
+    ledger = ledger or RecoveryLedger(
+        root.get("ledger_path", ":memory:"),
+        discount_factor=discount,
+        window=None if window is None else int(window),
+    )
+    chosen_actions = actions or list(Action)
+    common = {
+        "seed": int(root.get("seed", 0)),
+        "warm_start": str(policy_config.get("start", "cold")).lower() == "warm",
+        "use_mask": bool(policy_config.get("use_mask", True)),
+        "use_cost_term": bool(policy_config.get("use_cost_term", True)),
+        "prior_count": int(policy_config.get("prior_count", 2)),
+    }
+    if "epsilon" in algorithm or algorithm in {"eps", "epsilon_greedy"}:
+        return EpsilonGreedy(
+            ledger,
+            chosen_actions,
+            epsilon=float(policy_config.get("epsilon", 0.1)),
+            epsilon_min=float(policy_config.get("epsilon_min", 0.01)),
+            epsilon_decay=float(policy_config.get("epsilon_decay", 0.995)),
+            **common,
+        )
+    if "ucb" in algorithm:
+        return UCB1(ledger, chosen_actions, **common)
+    if "thompson" in algorithm or algorithm in {"ts", "thompson_sampling"}:
+        return ThompsonSampling(ledger, chosen_actions, **common)
+    raise ValueError(f"unknown bandit algorithm: {algorithm}")
 
-    name_lower = str(policy_name).lower()
-    
-    if "epsilon" in name_lower or "eps" in name_lower:
-        epsilon = params.get("epsilon", 0.1)
-        return EpsilonGreedyPolicy(ledger, actions, epsilon=epsilon, warm_start_table=params.get("warm_start_table"))
-    elif "ucb" in name_lower:
-        return UCB1Policy(ledger, actions, warm_start_table=params.get("warm_start_table"))
-    elif "thompson" in name_lower or "ts" in name_lower:
-        return ThompsonSamplingPolicy(ledger, actions, warm_start_table=params.get("warm_start_table"))
-    
-    return EpsilonGreedyPolicy(ledger, actions, warm_start_table=params.get("warm_start_table"))
+
+def _as_action(value: Action | str) -> Action:
+    if isinstance(value, Action):
+        return value
+    return Action(value)
+
+
+def _static_prior(signature: Signature) -> Action | None:
+    sequence = STATIC_TABLE.get(signature.failure_class)
+    if not sequence:
+        return None
+    index = min(max(signature.attempt - 1, 0), len(sequence) - 1)
+    return sequence[index]
+
+
+EpsilonGreedyPolicy = EpsilonGreedy
+UCB1Policy = UCB1
+ThompsonSamplingPolicy = ThompsonSampling

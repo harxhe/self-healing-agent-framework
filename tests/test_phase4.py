@@ -30,3 +30,18 @@ def test_thompson_sampling():
     policy = ThompsonSamplingPolicy(ledger, tf_actions())
     action = policy.select("sig_error")
     assert action in tf_actions()
+
+
+def test_ledger_persists_and_reset_clears(tmp_path):
+    path = tmp_path / "nested" / "recovery.sqlite"
+    ledger = RecoveryLedger(path)
+    ledger.log("run-1", 4, "timeout|shipping_estimator|1", "substitute", True, 1, 20, 0.8)
+    ledger.close()
+
+    reopened = RecoveryLedger(path)
+    stats = reopened.stats("timeout|shipping_estimator|1")
+    assert stats["substitute"]["n"] == 1
+    assert stats["substitute"]["successes"] == 1
+    assert stats["substitute"]["mean_reward"] == 0.8
+    reopened.reset()
+    assert reopened.stats("timeout|shipping_estimator|1") == {}

@@ -64,6 +64,7 @@ class StepReport(BaseModel):
     result: ToolResult | None = None
     action_cost: float = 0.0
     action_latency_ms: float = 0.0
+    regret: float = 0.0
 
 
 class EpisodeResult(BaseModel):
@@ -83,6 +84,7 @@ class EpisodeResult(BaseModel):
     cost: float = 0.0
     latency_ms: float = 0.0
     verifier_calls: int = 0
+    cumulative_regret: float = 0.0
     actions: list[str] = Field(default_factory=list)
     steps: list[StepReport] = Field(default_factory=list)
 
@@ -100,6 +102,7 @@ def run_episode(
     lam: float = 0.05,
     mu: float = 0.01,
     budget_config: Mapping[str, float] | None = None,
+    verifier_enabled: bool = True,
 ) -> EpisodeResult:
     tools = registry or default_registry()
     verifier = Verifier()
@@ -140,6 +143,7 @@ def run_episode(
             episode=episode,
             lam=lam,
             mu=mu,
+            verifier_enabled=verifier_enabled,
             records=records,
         )
 
@@ -161,8 +165,13 @@ def run_episode(
     episode_cost += verifier.calls
 
     final_answer = _synthesize(task, step_outputs)
-    verification = verifier.verify_answer(task, final_answer)
-    answer_correct = verification.accepted
+    if verifier_enabled:
+        verification = verifier.verify_answer(task, final_answer)
+        answer_correct = verification.accepted
+    else:
+        from healagent.tasks.checker import check_answer
+
+        answer_correct = check_answer(task, final_answer)
 
     if answer_correct:
         status = "success"
@@ -188,6 +197,7 @@ def run_episode(
         cost=round(episode_cost, 4),
         latency_ms=round(episode_latency, 4),
         verifier_calls=verifier.calls,
+        cumulative_regret=round(sum(step.regret for step in steps), 4),
         actions=all_actions,
         steps=steps,
     )
@@ -218,6 +228,7 @@ def _resolve_step(
     episode: int,
     lam: float,
     mu: float,
+    verifier_enabled: bool,
     records: list[TraceRecord],
 ) -> StepReport:
     result = initial
@@ -229,19 +240,20 @@ def _resolve_step(
     action_latency = 0.0
     detected = False
     signal_value: str | None = None
+    regret = 0.0
 
     while True:
         context = DetectionContext(
             tool=step.tool, attempt=attempt, depth_limit=budget.depth, recent_actions=recent_actions
         )
         signal = detect(result, context)
-        if signal is None and not verifier.verify_step(step.tool, step.args, result, tools):
+        if signal is None and verifier_enabled and not verifier.verify_step(step.tool, step.args, result, tools):
             signal = verifier.step_rejection_signal()
         if signal is None:
             status = "recovered" if detected else "clean"
             return _step_report(
                 step_index, step.tool, status, detected, attempt, signal_value, actions,
-                result, action_cost, action_latency,
+                result, action_cost, action_latency, regret,
             )
 
         detected = True
@@ -278,11 +290,17 @@ def _resolve_step(
             status = "degraded" if outcome.degraded else "failed"
             return _step_report(
                 step_index, step.tool, status, detected, attempt, signal_value, actions,
-                outcome.result, action_cost, action_latency,
+                outcome.result, action_cost, action_latency, regret,
             )
 
         mask = feasible_actions(signature, step.tool)
         action = policy.select(signature, mask)
+        feasible = mask or {action}
+        best_success = any(
+            injector.action_succeeds(step.tool, current_fault, candidate)
+            for candidate in feasible
+        )
+        regret += float(best_success) - float(injector.action_succeeds(step.tool, current_fault, action))
         outcome = apply_recovery(
             action,
             tool=tool,
@@ -302,7 +320,20 @@ def _resolve_step(
         action_latency += outcome.latency_ms
         actions.append(action.value)
         reward = recovery_reward(outcome.succeeded, outcome.cost, outcome.latency_ms, lam, mu)
-        policy.update(signature, action, reward)
+        update_observation = getattr(policy, "update_observation", None)
+        if callable(update_observation):
+            update_observation(
+                signature,
+                action,
+                reward,
+                success=outcome.succeeded,
+                cost=outcome.cost,
+                latency=outcome.latency_ms,
+                run_id=run_id,
+                episode=episode,
+            )
+        else:
+            policy.update(signature, action, reward)
         if not outcome.succeeded:
             recent_actions.append(action)
         result = outcome.result
@@ -318,12 +349,13 @@ def _resolve_step(
             status = "degraded" if outcome.degraded else "failed"
             return _step_report(
                 step_index, step.tool, status, detected, attempt, signal_value, actions,
-                result, action_cost, action_latency,
+                result, action_cost, action_latency, regret,
             )
 
 
 def _step_report(
-    step, tool, status, detected, attempts, signal, actions, result, action_cost, action_latency
+    step, tool, status, detected, attempts, signal, actions, result, action_cost, action_latency,
+    regret=0.0,
 ) -> StepReport:
     return StepReport(
         step=step,
@@ -336,6 +368,7 @@ def _step_report(
         result=result,
         action_cost=round(action_cost, 4),
         action_latency_ms=round(action_latency, 4),
+        regret=round(regret, 4),
     )
 
 
